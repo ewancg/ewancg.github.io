@@ -45,12 +45,18 @@ body
 
 .divContent
 {
-    min-width: 50vw;
-    max-width: 40vw;
     background-color: #222232;
     color: #FFFFFF;
     margin: auto;
     padding: 5px 10px;
+    
+        position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
 }
 
 .divHeader > *
@@ -139,6 +145,7 @@ body
         </div>
         
     <div class="divButtons" align="center">
+        <a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-play"></i>&ensp;ptweb.me</button></a>
         <a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-twitter"></i>&ensp;Twitter</button></a>
         <a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-github"></i>&ensp;GitHub</button></a>
         <button onclick="showPopup()"><i class="fab fa-discord"></i>&ensp;Discord</button>
