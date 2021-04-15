@@ -53,7 +53,7 @@ body
         position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 2;
+    z-index: 1;
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
@@ -90,7 +90,7 @@ body
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.25);
-    z-index: 1;
+    z-index: 2;
 }
 
 #divPopup
@@ -110,7 +110,7 @@ body
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 2;
+    z-index: 3;
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
@@ -120,39 +120,30 @@ body
 </head>
 
 <body>
-
     <div id="divPopup">
         <h3 align="center">Discord:&ensp;<code>Ewan Green#3926</code></h3>
         <div class="divButtons" align="center">
-        <button onclick="hidePopup()"><i class="fas fa-check"></i>&ensp;Okay</button>
+            <button onclick="hidePopup()"><i class="fas fa-check"></i>&ensp;Okay</button>
         </div>
     </div>
-
     <div id="divPopupGray" onclick="hidePopup()">
     </div>
-        
-    <div class="divContent" align="center">
-
-
-        <div class="divHeader" align="center">
-            <img src="resource/ewancircle.png">
-            <h1>Ewan Green</h1>
+        <div class="divContent" align="center">
+            <div class="divHeader" align="center">
+                <img src="resource/ewancircle.png">
+                <h1>Ewan Green</h1>
+            </div>
+            <div class="divText">
+                <p>Hello! I'm Ewan Green. I'm a novice C/C++ programmer from Colorado.</p>
+            </div>
+        <div class="divButtons" align="center">
+            <a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-play"></i>&ensp;ptweb.me</button></a>
+            <a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-twitter"></i>&ensp;Twitter</button></a>
+            <a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-github"></i>&ensp;GitHub</button></a>
+            <button onclick="showPopup()"><i class="fab fa-discord"></i>&ensp;Discord</button>
+            <a href="https://aemail.com/xkg9" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-envelope"></i>&ensp;Email</button></a>
         </div>
-        
-        <div class="divText">
-            <p>Hello! I'm Ewan Green. I'm a novice C/C++ programmer from Colorado.</p>
-            
-        </div>
-        
-    <div class="divButtons" align="center">
-        <a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-play"></i>&ensp;ptweb.me</button></a>
-        <a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-twitter"></i>&ensp;Twitter</button></a>
-        <a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-github"></i>&ensp;GitHub</button></a>
-        <button onclick="showPopup()"><i class="fab fa-discord"></i>&ensp;Discord</button>
-        <a href="https://aemail.com/xkg9" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-envelope"></i>&ensp;Email</button></a>
     </div>
-    </div>
-    
 <script>
 function showPopup() 
 {
