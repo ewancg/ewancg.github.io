@@ -150,6 +150,8 @@ a:hover
 
 .divButtons
 {
+    text-align: center;
+    font-size: 0; 
     margin: auto;
     padding: 5px 5px;
 }
@@ -169,7 +171,8 @@ a:hover
 
 .iconLink
 {
-    margin: 6px; 
+    font-size: 15px;
+    margin: auto 10px; 
     color: var(--color-light-zero);
 }
 
