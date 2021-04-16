@@ -172,7 +172,9 @@ a:hover
 .iconLink
 {
     font-size: 15px;
-    margin: auto 10px; 
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 12px;
     color: var(--color-light-zero);
 }
 
