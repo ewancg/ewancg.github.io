@@ -13,6 +13,44 @@
     --color-light-two:  #BBBBCB;
 }
 
+@keyframes fadePopupIn
+{
+    from
+    {
+        opacity: 0;
+    }
+    to
+    {
+        opacity: 0.9;
+    }
+}
+
+@keyframes fadeButtonHovered
+{
+    from
+    {
+        background-color: var(--color-light-zero);
+        color: var(--color-dark-zero);
+    }
+    to 
+    {
+        background-color: var(--color-light-one);
+        color: var(--color-dark-three);
+    }
+}
+
+@keyframes fadeIconButtonHovered
+{
+    from
+    {
+        color: var(--color-light-zero);
+    }
+    to 
+    {
+        color: var(--color-light-one);
+    }
+}
+
 body
 {
     background-color: var(--color-dark-zero);
@@ -36,6 +74,9 @@ button:hover
 {
     background-color: var(--color-light-one);
     color: var(--color-dark-three);
+    
+    animation-name: fadeButtonHovered;
+    animation-duration: 0.1s;
     
     cursor: pointer;
 }
@@ -130,6 +171,8 @@ a:hover
 .iconLink:hover
 {
     color: var(--color-light-one);
+    animation-name: fadeIconButtonHovered;
+    animation-duration: 0.1s;
 }
 
 .iconLink:active
@@ -149,6 +192,8 @@ a:hover
     bottom: 0;
     background-color: rgba(0,0,0,0.25);
     z-index: 2;
+    animation-name: fadePopupIn;
+    animation-duration: 0.3s;
 }
 
 #popupDiscord
@@ -171,6 +216,9 @@ a:hover
     
     margin: auto;
     padding: 5px 10px;
+    
+    animation-name: fadePopupIn;
+    animation-duration: 0.3s;
     
     border: 0px solid;
     border-radius: 4px;
