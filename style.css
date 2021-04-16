@@ -1,5 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
 :root
 {
@@ -70,6 +71,10 @@ button
     padding: 6px 12px;
 }
 
+code
+{
+    font-family: 'Ubuntu Mono', monospace;
+}
 button:hover
 {
     background-color: var(--color-light-one);
@@ -196,12 +201,24 @@ a:hover
     animation-duration: 0.3s;
 }
 
-#popupDiscord
+#discordText
+{
+    color: var(--color-light-zero);
+}
+
+#discordText:hover
+{
+    animation-name: fadeIconButtonHovered;
+    animation-duration: 0.1s;
+    color: var(--color-light-one);
+}
+
+#popupLicense
 {
     
 }
 
-#popupLicense
+#popupDiscord
 {
     
 }
