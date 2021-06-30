@@ -114,9 +114,6 @@ a:hover
     color: var(--color-light-two);
 }
 
-#imgEwan {
-  clip-path: circle(40% at center);
-}
 
 .divContent
 {
@@ -231,6 +228,10 @@ a:hover
 #popupDiscord
 {
     
+}
+
+#imgEwan {
+  clip-path: circle(40% at center);
 }
 
 .divPopup
