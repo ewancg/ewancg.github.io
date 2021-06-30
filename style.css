@@ -114,6 +114,10 @@ a:hover
     color: var(--color-light-two);
 }
 
+#imgEwan {
+  clip-path: circle(40% at center);
+}
+
 .divContent
 {
     background-color: var(--color-dark-two);
