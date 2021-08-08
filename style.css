@@ -69,6 +69,7 @@ body
 	background-color: var(--color-dark-zero);
 	font-family: 'Source Sans Pro', sans-serif;
 	margin: 0px;
+	overflow: hidden;
 }
 
 button 
@@ -243,7 +244,7 @@ a:hover
 }
 
 #imgEwan {
-clip-path: circle(40% at center);
+	clip-path: circle(40% at center);
 }
 
 .divPopup
@@ -265,6 +266,7 @@ clip-path: circle(40% at center);
 	z-index: 3;
 	margin: auto;
 	
+	resize: both; 
 	transform-origin: center;
 	transform: translate(-50%, -50%);
 	

@@ -2,7 +2,16 @@ function showPopup(id)
 {
 	document.getElementById(id).style.display = "block";
 	document.getElementById("divPopupGray").style.display = "block";
+	
+	var w, h;
+	w = document.getElementById(id).offsetWidth.toString();
+	h = document.getElementById(id).offsetHeight.toString();
+	document.getElementById(id).style.minWidth = w.concat("px");
+	document.getElementById(id).style.maxWidth = w.concat("px");
+	document.getElementById(id).style.minHeight = h.concat("px");
+	document.getElementById(id).style.maxHeight = h.concat("px");
 };
+
 function hidePopup(id) 
 {
 	if(id == "all")
@@ -22,6 +31,7 @@ function hidePopup(id)
 	}
 	document.getElementById("divPopupGray").style.display = "none";
 };
+
 function includeHTML()
 {
 	var z, i, elmnt, file, xhttp;
@@ -60,6 +70,7 @@ function includeHTML()
 		}
 	}
 };
+
 function selectElementText(el, win) {
 	win = win || window;
 	var doc = win.document, sel, range;
@@ -74,7 +85,7 @@ function selectElementText(el, win) {
 		range.moveToElementText(el);
 		range.select();
 	}
-}
+};
 
 // Make the DIV element draggable:
 
@@ -113,7 +124,7 @@ function dragElement(elmnt) {
 		document.onmouseup = null;
 		document.onmousemove = null;
 	}
-}
+};
 
 selectElementText(document.getElementById("someElement"));
 selectElementText(elementInIframe, iframe.contentWindow);
