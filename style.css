@@ -4,258 +4,270 @@
 
 :root
 {
-    --color-dark-zero:  #000010;
-    --color-dark-one:   #111121;
-    --color-dark-two:   #222232;
-    --color-dark-three: #333343;
-    
-    --color-light-zero: #FFFFFF;
-    --color-light-one:  #DDDDED;
-    --color-light-two:  #BBBBCB;
+	--color-dark-zero:  #000010;
+	--color-dark-one:   #111121;
+	--color-dark-two:   #222232;
+	--color-dark-three: #333343;
+	
+	--color-light-zero: #FFFFFF;
+	--color-light-one:  #DDDDED;
+	--color-light-two:  #BBBBCB;
 }
 
 @keyframes fadePopupIn
 {
-    from
-    {
-        opacity: 0;
-    }
-    to
-    {
-        opacity: 0.9;
-    }
+	from
+	{
+		opacity: 0;
+	}
+	to
+	{
+		opacity: 0.9;
+	}
+}
+
+@keyframes scalePopupIn
+{
+	from
+	{
+		transform: translate(-50%, -50%) scale(0.75);
+	}
+	to
+	{
+		transform: translate(-50%, -50%) scale(1);
+	}
 }
 
 @keyframes fadeButtonHovered
 {
-    from
-    {
-        background-color: var(--color-light-zero);
-        color: var(--color-dark-zero);
-    }
-    to 
-    {
-        background-color: var(--color-light-one);
-        color: var(--color-dark-three);
-    }
+	from
+	{
+		background-color: var(--color-light-zero);
+		color: var(--color-dark-zero);
+	}
+	to 
+	{
+		background-color: var(--color-light-one);
+		color: var(--color-dark-three);
+	}
 }
 
 @keyframes fadeIconButtonHovered
 {
-    from
-    {
-        color: var(--color-light-zero);
-    }
-    to 
-    {
-        color: var(--color-light-one);
-    }
+	from
+	{
+		color: var(--color-light-zero);
+	}
+	to 
+	{
+		color: var(--color-light-one);
+	}
 }
 
 body
 {
-    background-color: var(--color-dark-zero);
-    font-family: 'Source Sans Pro', sans-serif;
-    margin: 0px;
+	background-color: var(--color-dark-zero);
+	font-family: 'Source Sans Pro', sans-serif;
+	margin: 0px;
 }
 
 button 
 {
-    background-color: var(--color-light-zero);
-    color: var(--color-dark-zero);
-    
-    border: 0px solid; 
-    border-radius: 4px;
-    
-    margin: 4px 2px;
-    padding: 6px 12px;
+	background-color: var(--color-light-zero);
+	color: var(--color-dark-zero);
+	
+	border: 0px solid; 
+	border-radius: 4px;
+	
+	margin: 4px 2px;
+	padding: 6px 12px;
 }
 
 code
 {
-    font-family: 'Ubuntu Mono', monospace;
+	font-family: 'Ubuntu Mono', monospace;
 }
 button:hover
 {
-    background-color: var(--color-light-one);
-    color: var(--color-dark-three);
-    
-    animation-name: fadeButtonHovered;
-    animation-duration: 0.1s;
-    
-    cursor: pointer;
+	background-color: var(--color-light-one);
+	color: var(--color-dark-three);
+	
+	animation-name: fadeButtonHovered;
+	animation-duration: 0.1s;
+	
+	cursor: pointer;
 }
 
 button:active
 {
-    background-color: var(--color-light-two);
-    color: var(--color-dark-three);
+	background-color: var(--color-light-two);
+	color: var(--color-dark-three);
 }
 
 button:visited
 {
-    color: var(--color-dark-one);
+	color: var(--color-dark-one);
 }
 
 a
 {
-    text-decoration: none;
-    font-weight: bold;
-    color: var(--color-light-zero);
+	text-decoration: none;
+	font-weight: bold;
+	color: var(--color-light-zero);
 }
 
 a:visited
 {
-    color: var(--color-light-one);
+	color: var(--color-light-one);
 }
 
 a:hover
 {
-    color: var(--color-light-two);
+	color: var(--color-light-two);
 }
 
 
 .divContent
 {
-    background-color: var(--color-dark-two);
-    color: var(--color-light-zero);
-    padding: 5px 10px;
-    margin: auto;
-    
-    border: 0px solid; 
-    border-radius: 4px;
-    
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+	background-color: var(--color-dark-two);
+	color: var(--color-light-zero);
+	padding: 5px 10px;
+	margin: auto;
+	
+	border: 0px solid; 
+	border-radius: 4px;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 1;
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
 }
 
 .divHeader > *
 {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 10px 20px;
-    margin: auto;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 10px 20px;
+	margin: auto;
 }
 
 .divText
 {
-    word-wrap: break-word;
-    padding: 10px 20px;
-    margin: auto;
+	word-wrap: break-word;
+	padding: 10px 20px;
+	margin: auto;
 }
 
 .divButtons
 {
-    text-align: center;
-    font-size: 0; 
-    margin: auto;
-    padding: 5px 5px;
+	text-align: center;
+	font-size: 0; 
+	margin: auto;
+	padding: 5px 5px;
 }
 
 .divTopbar > *
 {
-    display: inline-block;
-    width: 100%;
-    background-color: var(--color-dark-three);
-    color: var(--color-light-one);
+	display: inline-block;
+	width: 100%;
+	background-color: var(--color-dark-three);
+	color: var(--color-light-one);
 }
 
 .popupText
 {
-    padding: 5px 10px;
+	padding: 5px 10px;
 }
 
 .iconLink
 {
-    font-size: 15px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 12px;
-    color: var(--color-light-zero);
+	font-size: 15px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 12px;
+	color: var(--color-light-zero);
 }
 
 .iconLink:hover
 {
-    color: var(--color-light-one);
-    animation-name: fadeIconButtonHovered;
-    animation-duration: 0.1s;
+	color: var(--color-light-one);
+	animation-name: fadeIconButtonHovered;
+	animation-duration: 0.1s;
 }
 
 .iconLink:active
 {
-    color: var(--color-light-two);
+	color: var(--color-light-two);
 }
 
 #divPopupGray
 {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.25);
-    z-index: 2;
-    animation-name: fadePopupIn;
-    animation-duration: 0.3s;
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.25);
+	z-index: 2;
+	animation-name: fadePopupIn;
+	animation-duration: 0.3s;
 }
 
 #discordText
 {
-    color: var(--color-light-zero);
+	color: var(--color-light-zero);
 }
 
 #discordText:hover
 {
-    animation-name: fadeIconButtonHovered;
-    animation-duration: 0.1s;
-    color: var(--color-light-one);
-    cursor: pointer;
+	animation-name: fadeIconButtonHovered;
+	animation-duration: 0.1s;
+	color: var(--color-light-one);
+	cursor: pointer;
 }
 
 #popupLicense
 {
-    
+	
 }
 
 #popupDiscord
 {
-    
+	
 }
 
 #imgEwan {
-  clip-path: circle(40% at center);
+clip-path: circle(40% at center);
 }
 
 .divPopup
 {
-    display: none;
-    
-    background-color: var(--color-dark-three);
-    color: var(--color-light-zero);
-    opacity: 90%;
-    
-    margin: auto;
-    padding: 5px 10px;
-    
-    animation-name: fadePopupIn;
-    animation-duration: 0.3s;
-    
-    border: 0px solid;
-    border-radius: 4px;
-    
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 3;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+	display: none;
+	
+	background-color: var(--color-dark-three);
+	color: var(--color-light-zero);
+	opacity: 90%;
+	
+	padding: 5px 10px;
+	
+	border: 0px solid;
+	border-radius: 4px;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 3;
+	margin: auto;
+	
+	transform-origin: center;
+	transform: translate(-50%, -50%);
+	
+	animation: fadePopupIn 0.3s, scalePopupIn 0.3s;
+	
 }
