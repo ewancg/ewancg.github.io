@@ -66,9 +66,11 @@
 
 body
 {
+	min-height: 100vh;
 	background-color: var(--color-dark-zero);
 	font-family: 'Source Sans Pro', sans-serif;
 	margin: 0px;
+	padding: 0px;
 	overflow: hidden;
 }
 
@@ -130,15 +132,19 @@ a:hover
 
 .divContent
 {
+	display: block;
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
 	padding: 5px 10px;
 	margin: auto;
 	
+	max-width: 100%;
+	max-height: 100%;
+	
 	border: 0px solid; 
 	border-radius: 4px;
 	
-	position: absolute;
+	position: fixed;
 	top: 50%;
 	left: 50%;
 	z-index: 1;
@@ -255,7 +261,7 @@ a:hover
 	color: var(--color-light-zero);
 	opacity: 90%;
 	
-	padding: 5px 10px;
+	padding: 2px;
 	
 	border: 0px solid;
 	border-radius: 4px;
@@ -264,9 +270,9 @@ a:hover
 	top: 50%;
 	left: 50%;
 	z-index: 3;
+	
 	margin: auto;
 	
-	resize: both; 
 	transform-origin: center;
 	transform: translate(-50%, -50%);
 	
