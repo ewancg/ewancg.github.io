@@ -132,7 +132,6 @@ a:hover
 
 .divContent
 {
-	display: block;
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
 	padding: 5px 10px;
