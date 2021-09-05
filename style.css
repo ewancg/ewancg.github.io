@@ -129,6 +129,25 @@ a:hover
 	color: var(--color-light-two);
 }
 
+/*.divTitle
+{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	
+	background-color: var(--color-dark-two);
+
+	margin: 0px;
+}
+
+.divTab
+{
+	margin: 0px 10px;
+	position: fixed;
+	display: inline-block;
+	background-color: var(--color-dark-three);
+	padding: 0px 10px;
+} this comes later*/
 
 .divContent
 {
@@ -159,7 +178,6 @@ a:hover
 	padding: 10px 20px;
 	margin: auto;
 }
-
 .divText
 {
 	word-wrap: break-word;
@@ -248,8 +266,9 @@ a:hover
 	
 }
 
-#imgEwan {
-	clip-path: circle(40% at center);
+.circularImage {
+	border-radius: 50%;
+/* 	clip-path: circle(40% at center); */
 }
 
 .divPopup
