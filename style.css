@@ -275,6 +275,7 @@ a:hover
 {
 	display: none;
 	
+	backdrop-filter: blur(128px);
 	background-color: var(--color-dark-three);
 	color: var(--color-light-zero);
 	opacity: 90%;
