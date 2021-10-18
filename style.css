@@ -271,12 +271,25 @@ a:hover
 /* 	clip-path: circle(40% at center); */
 }
 
+.divPopup {
+  background-color: var(--color-dark-one);
+  opacity: 0.85;
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .divPopup {
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(128px);
+    backdrop-filter: blur(128px);
+  }
+}
+
 .divPopup
 {
 	display: none;
-	
-	backdrop-filter: blur(128px);
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	background-color: transparent;
 	color: var(--color-light-zero);
 	
