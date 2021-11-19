@@ -290,7 +290,7 @@ a:hover
 	background-color: var(--color-dark-two);
 	opacity: 0.85;
 }
-
+/*
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
 	.divPopup {
 		background-color: transparent;
@@ -298,7 +298,7 @@ a:hover
 		-webkit-backdrop-filter: blur(128px);
 		backdrop-filter: blur(128px);
 	}
-}
+}*/
 
 .divPopup
 {
