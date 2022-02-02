@@ -1,6 +1,13 @@
+let width = screen.width;
+let mobileTolerance = 680;
+
 function showPopup(id) 
 {
-	document.getElementById(id).style.display = "block";
+	if(width > mobileTolerance) {
+		document.getElementById(id).style.display = "block";
+	} else {
+		document.getElementById(id).style.display = "flex";
+	}
 	document.getElementById("divPopupGray").style.display = "block";
 	
 	var w, h;
@@ -92,41 +99,40 @@ function selectElementText(el, win) {
 Array.from(document.getElementsByClassName("divPopup")).forEach(dragElement);
 
 function dragElement(elmnt) {
-	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-	elmnt.onmousedown = dragMouseDown;
-	
-	function dragMouseDown(e) {
-		e = e || window.event;
-		e.preventDefault();
-		// get the mouse cursor position at startup:
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		document.onmouseup = closeDragElement;
-		// call a function whenever the cursor moves:
-		document.onmousemove = elementDrag;
-	}
-	
-	function elementDrag(e) {
-		e = e || window.event;
-		e.preventDefault();
-		// calculate the new cursor position:
-		pos1 = pos3 - e.clientX;
-		pos2 = pos4 - e.clientY;
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		// set the element's new position:
-		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-	}
-	
-	function closeDragElement() {
-		// stop moving when mouse button is released:
-		document.onmouseup = null;
-		document.onmousemove = null;
+	if(width > mobileTolerance) {
+		var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+		elmnt.onmousedown = dragMouseDown;
+		
+		function dragMouseDown(e) {
+			e = e || window.event;
+			e.preventDefault();
+			// get the mouse cursor position at startup:
+			pos3 = e.clientX;
+			pos4 = e.clientY;
+			document.onmouseup = closeDragElement;
+			// call a function whenever the cursor moves:
+			document.onmousemove = elementDrag;
+		}
+		
+		function elementDrag(e) {
+			e = e || window.event;
+			e.preventDefault();
+			// calculate the new cursor position:
+			pos1 = pos3 - e.clientX;
+			pos2 = pos4 - e.clientY;
+			pos3 = e.clientX;
+			pos4 = e.clientY;
+			// set the element's new position:
+			elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+			elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+		}
+		
+		function closeDragElement() {
+			// stop moving when mouse button is released:
+			document.onmouseup = null;
+			document.onmousemove = null;
+		}
 	}
 };
-
-selectElementText(document.getElementById("someElement"));
-selectElementText(elementInIframe, iframe.contentWindow);
 
 //shittons of this code was taken and changed from w3schools/stack overflow because i am a javascript noob and intend to keep it that way
