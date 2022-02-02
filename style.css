@@ -309,6 +309,7 @@ a:hover
 	.divPopup {
 		display: none;
 		box-shadow: none;
+		padding: 0rem;
 	}
 	.divContent > *, .divPopup > * {
 		margin: 0%;
