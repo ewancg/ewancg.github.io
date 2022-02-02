@@ -84,8 +84,8 @@ body
 	min-height: 100vh;
 	background-color: var(--color-dark-zero);
 	font-family: 'Source Sans Pro', sans-serif;
-	margin: 0px;
-	padding: 0px;
+	margin: none;
+	padding: none;
 	overflow: hidden;
 }
 
@@ -94,11 +94,11 @@ button
 	background-color: var(--color-light-zero);
 	color: var(--color-dark-zero);
 	
-	border: 0px solid; 
-	border-radius: 4px;
+	border: none; 
+	border-radius: 0.25rem;
 	
-	margin: 4px 2px;
-	padding: 6px 12px;
+	margin: 0.25rem 0.125rem;
+	padding: 0.4rem 0.7rem;
 }
 
 code
@@ -148,14 +148,14 @@ a:hover
 {
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
-	padding: 5px 10px;
+	padding: 0.4rem 0.7rem;
 	margin: auto;
 	
 	max-width: 100%;
 	max-height: 100%;
 	
-	border: 0px solid; 
-	border-radius: 4px;
+	border: none; 
+	border-radius: 0.25rem;
 	
 	position: fixed;
 	top: 50%;
@@ -170,13 +170,13 @@ a:hover
 {
 	display: inline-block;
 	vertical-align: middle;
-	padding: 10px 20px;
+	padding: 0.7rem 1.4rem;
 	margin: auto;
 }
 .divText
 {
 	word-wrap: break-word;
-	padding: 10px 20px;
+	padding: 0.7rem 1.4rem;
 	margin: auto;
 }
 
@@ -185,7 +185,7 @@ a:hover
 	text-align: center;
 	font-size: 0; 
 	margin: auto;
-	padding: 5px 5px;
+	padding: 0.4rem;
 }
 
 .divTopbar > *
@@ -198,15 +198,15 @@ a:hover
 
 .popupText
 {
-	padding: 5px 10px;
+	padding: 0.4rem 0.8rem;
 }
 
 .iconLink
 {
-	font-size: 15px;
+	font-size: 11pt;
 	margin-top: auto;
 	margin-bottom: auto;
-	margin-left: 12px;
+	margin-left: 0.75rem;
 	color: var(--color-light-zero);
 }
 
@@ -273,13 +273,13 @@ a:hover
 	background-color: var(--color-dark-two);
 	opacity: 0.85;
 	
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2), 0 0.4rem 1.6rem 0 rgba(0, 0, 0, 0.19);
 	color: var(--color-light-zero);
 	
-	padding: 2px;
+	padding: 0.125rem;
 	
-	border: 0px solid;
-	border-radius: 4px;
+	border: none;
+	border-radius: 0.25rem;
 	
 	position: absolute;
 	top: 50%;
