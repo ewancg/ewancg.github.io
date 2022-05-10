@@ -8,6 +8,22 @@
 	<link rel='icon' href='resource/favicon.png' type='image/png'>
 </head>
 <body>
+<div class="divContent" align="center">
+		<div class="divHeader" align="center">
+			<img class="circularImage" src="resource/ewan.png" width="128px" height="128px"><h1>Ewan Green</h1>
+		</div>
+		<div class="divText">
+			<p>I'm a novice C/C++ programmer from Colorado.</p>
+		</div>
+		<div class="divButtons" align="center">
+			<a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-play"></i>&ensp;ptweb.me</button></a>
+			<a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-twitter"></i>&ensp;Twitter</button></a>
+			<a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-github"></i>&ensp;GitHub</button></a>
+			<button onclick="showPopup('popupDiscord')"><i class="fab fa-discord"></i>&ensp;Discord</button>
+			<a href="https://aemail.com/xkg9" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-envelope"></i>&ensp;Email</button></a>
+			<i class="fas fa-info-circle iconLink" onclick="showPopup('popupLicense')"></i>
+		</div>
+	</div>
 	<div id="popupDiscord" class="divPopup">
 		<h3 class="popupText" align="center">Discord:&ensp;<code onclick="selectElementText(document.getElementById('discordText'))" id="discordText">Ewan Green#1526</code></h3>
 		<div class="divButtons" align="center">
@@ -26,22 +42,6 @@
 		</div>
 	</div>
 	<div id="divPopupGray" onclick="hidePopup('all')"></div>
-	<div class="divContent" align="center">
-		<div class="divHeader" align="center">
-			<img class="circularImage" src="resource/ewan.png" width="128px" height="128px"><h1>Ewan Green</h1>
-		</div>
-		<div class="divText">
-			<p>Hello! I'm Ewan Green. I'm a novice C/C++ programmer from Colorado.</p>
-		</div>
-		<div class="divButtons" align="center">
-			<a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-play"></i>&ensp;ptweb.me</button></a>
-			<a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-twitter"></i>&ensp;Twitter</button></a>
-			<a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-github"></i>&ensp;GitHub</button></a>
-			<button onclick="showPopup('popupDiscord')"><i class="fab fa-discord"></i>&ensp;Discord</button>
-			<a href="https://aemail.com/xkg9" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-envelope"></i>&ensp;Email</button></a>
-			<i class="fas fa-info-circle iconLink" onclick="showPopup('popupLicense')"></i>
-		</div>
-	</div>
 </body>
 <script src="script.js"></script> 
 </html>
