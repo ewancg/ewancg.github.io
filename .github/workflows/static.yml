@@ -1,16 +1,42 @@
---2022-12-10 19:24:38--  https://github.com/EwanGreen4/ewangreen4.github.io/raw/master/.github/workflows/static.yml
-Resolving github.com (github.com)... 140.82.113.3
-Connecting to github.com (github.com)|140.82.113.3|:443... connected.
-HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/EwanGreen4/ewangreen4.github.io/master/.github/workflows/static.yml [following]
---2022-12-10 19:24:39--  https://raw.githubusercontent.com/EwanGreen4/ewangreen4.github.io/master/.github/workflows/static.yml
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8002::154, 2606:50c0:8000::154, 2606:50c0:8001::154, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8002::154|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1084 (1.1K) [text/plain]
-Saving to: ‘static.yml.1’
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
-     0K .                                                     100% 34.2M=0s
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["redesign"]
 
-2022-12-10 19:24:39 (34.2 MB/s) - ‘static.yml.1’ saved [1084/1084]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url/redesign }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
