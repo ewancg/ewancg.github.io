@@ -1,0 +1,16 @@
+--2022-12-10 19:24:38--  https://github.com/EwanGreen4/ewangreen4.github.io/raw/master/.github/workflows/static.yml
+Resolving github.com (github.com)... 140.82.113.3
+Connecting to github.com (github.com)|140.82.113.3|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://raw.githubusercontent.com/EwanGreen4/ewangreen4.github.io/master/.github/workflows/static.yml [following]
+--2022-12-10 19:24:39--  https://raw.githubusercontent.com/EwanGreen4/ewangreen4.github.io/master/.github/workflows/static.yml
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8002::154, 2606:50c0:8000::154, 2606:50c0:8001::154, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8002::154|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1084 (1.1K) [text/plain]
+Saving to: ‘static.yml.1’
+
+     0K .                                                     100% 34.2M=0s
+
+2022-12-10 19:24:39 (34.2 MB/s) - ‘static.yml.1’ saved [1084/1084]
+
