@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Ewan Green</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
 	<meta property="og:url" content="https://ewan.horse/">
 	<meta name="twitter:url" content="https://ewan.horse/">
 	<meta property="og:title" content="Ewan Green">
@@ -11,42 +12,77 @@
 	<link rel="stylesheet" href="style.css">
 	<link rel='icon' href='resource/favicon.png' type='image/png'>
 </head>
+
 <body>
-<div class="divContent" align="center">
+
+	<div class="divContent">
+		<img class="circularImage noDock autoAnimate" src="resource/ewan.png" width="128px" height="128px">
+		
+		<p class="onlyDock uiText autoAnimate" id="smallTitle">Ewan Green</p>
+		<div id="divInnerContent" display="flex">
+			
+			<p id="title" class="noDock uiText autoAnimate">Ewan Green</p>
+			<p id="subtitle" class="noDock uiText autoAnimate">Software Engineer</p>
+			
+			<div class="navButtonContainer autoAnimate" id="mainNavButton" defaultSelection="0" onload="createNavButton(this)">
+				<div class="navButton" id="summaryNavButton" onmousedown="showSummary()">Summary</div>
+				<div class="navButton" id="portfolioNavButton" onmousedown="showPortfolio()">Portfolio</div>
+				<div class="navButton" id="contactNavButton" onmousedown="showContact()">Contact</div>
+			</div>
+		</div>
+	</div>
+	<!--
+
+	<div class="divContent" align="center">
 		<div class="divHeader" align="center">
-			<img class="circularImage" src="resource/ewan.png" width="128px" height="128px"><h1>Ewan Green</h1>
+			<img class="circularImage" src="resource/ewan.png" width="128px" height="128px">
+			<h1>Ewan Green</h1>
 		</div>
 		<div class="divText">
 			<p>I'm a novice C/C++ programmer from Colorado.</p>
 		</div>
 		<div class="divButtons" align="center">
-			<a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-play"></i>&ensp;ptweb.me</button></a>
-			<a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-twitter"></i>&ensp;Twitter</button></a>
-			<a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i class="fab fa-github"></i>&ensp;GitHub</button></a>
+			<a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i
+				class="fas fa-play"></i>&ensp;ptweb.me</button></a>
+				<a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i
+					class="fab fa-twitter"></i>&ensp;Twitter</button></a>
+					<a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i
+						class="fab fa-github"></i>&ensp;GitHub</button></a>
 			<button onclick="showPopup('popupDiscord')"><i class="fab fa-discord"></i>&ensp;Discord</button>
-			<a href="https://aemail.com/xkg9" target="_blank" rel="noopener noreferrer"><button><i class="fas fa-envelope"></i>&ensp;Email</button></a>
-			<i class="fas fa-info-circle iconLink" onclick="showPopup('popupLicense')"></i>
+			<a href="https://aemail.com/xkg9" target="_blank" rel="noopener noreferrer"><button><i
+				class="fas fa-envelope"></i>&ensp;Email</button></a>
+				<i class="fas fa-info-circle iconLink" onclick="showPopup('popupLicense')"></i>
+			</div>
 		</div>
-	</div>
-	<div id="popupDiscord" class="divPopup">
-		<h3 class="popupText" align="center">Discord:&ensp;<code onclick="selectElementText(document.getElementById('discordText'))" id="discordText">Ewan Green#1526</code></h3>
-		<div class="divButtons" align="center">
-			<button vertical-align="center" onclick="hidePopup('popupDiscord')"><i class="fas fa-times"></i>&ensp;Close</button>
-		</div>
-	</div>
-	<div id="popupLicense" class="divPopup">
-		<h3 class="popupText" align="center">This website uses third-party assets.</h3>
-		<p class="popupText" align="center">
-			<a href="https://fontawesome.com" target="_blank" rel="noopener noreferrer">FontAwesome 5.15.3</a>&ensp;-&ensp;<a href="https://fontawesome.com/license/free" target="_blank" rel="noopener noreferrer">Custom License</a></br>
-			<a href="https://fonts.adobe.com/fonts/source-sans" target="_blank" rel="noopener noreferrer">Source Sans Pro</a>&ensp;-&ensp;<a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL" target="_blank" rel="noopener noreferrer">Open Font License</a><br>
-			<a href="https://design.ubuntu.com/font/" target="_blank" rel="noopener noreferrer">Ubuntu Mono</a>&ensp;-&ensp;<a href="https://ubuntu.com/legal/font-licence" target="_blank" rel="noopener noreferrer">Ubuntu Font Licence</a>
-		</p>
-		<div class="divButtons" align="center">
-			<button onclick="hidePopup('popupLicense')"><i class="fas fa-times"></i>&ensp;Close</button>
-		</div>
-	</div>
-	<div id="divPopupGray" onclick="hidePopup('all')"></div>
+		<div id="popupDiscord" class="divPopup">
+			<h3 class="popupText" align="center">Discord:&ensp;<code
+				onclick="selectElementText(document.getElementById('discordText'))"
+				id="discordText">Ewan Green#1526</code></h3>
+				<div class="divButtons" align="center">
+					<button vertical-align="center" onclick="hidePopup('popupDiscord')"><i
+						class="fas fa-times"></i>&ensp;Close</button>
+					</div>
+				</div>
+				<div id="popupLicense" class="divPopup">
+					<h3 class="popupText" align="center">This website uses third-party assets.</h3>
+					<p class="popupText" align="center">
+						<a href="https://fontawesome.com" target="_blank" rel="noopener noreferrer">FontAwesome
+							5.15.3</a>&ensp;-&ensp;<a href="https://fontawesome.com/license/free" target="_blank"
+							rel="noopener noreferrer">Custom License</a></br>
+							<a href="https://fonts.adobe.com/fonts/source-sans" target="_blank" rel="noopener noreferrer">Source Sans
+								Pro</a>&ensp;-&ensp;<a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+								target="_blank" rel="noopener noreferrer">Open Font License</a><br>
+								<a href="https://design.ubuntu.com/font/" target="_blank" rel="noopener noreferrer">Ubuntu
+									Mono</a>&ensp;-&ensp;<a href="https://ubuntu.com/legal/font-licence" target="_blank"
+									rel="noopener noreferrer">Ubuntu Font Licence</a>
+								</p>
+								<div class="divButtons" align="center">
+									<button onclick="hidePopup('popupLicense')"><i class="fas fa-times"></i>&ensp;Close</button>
+								</div>
+							</div>
+							<div id="divPopupGray" onclick="hidePopup('all')"></div>
+						-->
 </body>
-<script src="script.js"></script> 
-</html>
+<script src="script.js"></script>
 
+</html>
