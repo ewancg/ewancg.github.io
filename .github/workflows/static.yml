@@ -25,7 +25,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url/redesign }}
+      url: "${{ steps.deployment.outputs.page_url }}/redesign"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
