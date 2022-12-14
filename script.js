@@ -1,79 +1,29 @@
+import { showContact, showPortfolio, showSummary } from './navigation.js';
+
 let width = window.innerWidth;
 let mobileTolerance = 680;
 
-function dockNav(docked) {
-  let content = document.getElementsByClassName("divContent")[0];
-/*   let fn = docked ? content.setAttribute : content.removeAttribute;
-  fn.call(content, "docked", "true") */
-
-  content.setAttribute("docked", docked);
-}
-
-function showContact() {
-  dockNav(true);
-}
-
-function showPortfolio() {
-  dockNav(true);
-}
-
-function showSummary() {
-  dockNav(false);
-}
-
-function animateNavButton(parent, object, index, count) {
-  let step = 100 / count;
-  const style = document.createElement('style');
-  style.textContent = `
-  #${parent.id} {
-      background-size: ${(step)}% 100%;
-      background-position-x: ${(50 * index)}%;
-    }
-    `;
-    document.head.appendChild(style);
-    Array.from(parent.children).forEach(function (child) {
-      child.setAttribute("selected", false);
-    })
-    object.setAttribute("selected", true);
-}
-
-function createNavButton(obj) {
-  let children = obj.children;
-  for (let i = 0; i < children.length; i++) {
-    let z = i;
-    children[i].addEventListener("mousedown", function () { animateNavButton(obj, this, z, children.length) })
+let animationTimeDetermined = false;
+function determineAnimationTime() {
+  if (!animationTimeDetermined) {
+    animationTimeDetermined = true;
+    let r = document.querySelector(':root');
+    let time = getComputedStyle(r).getPropertyValue("--dock-animation-time");
+    r.style.setProperty('--real-dock-animation-time', time);
   }
-
-  animateNavButton(obj, children[0], 0, children.length);
 }
 
-let navButtonContainers = document.getElementsByClassName("navButtonContainer");
-for (let i = 0; i < navButtonContainers.length; i++) {
-  createNavButton(navButtonContainers[i]);
-}
+document.addEventListener("DOMContentLoaded", () =>
+  Promise.all(document.getElementsByClassName("dynamicHeader")[0].getAnimations().map((anim) => anim.finished)).then(
+    determineAnimationTime()
+  ))
 
-document.onload = () => {
-
-  Array.from(document.getElementsByClassName("autoAnimate")).forEach((item) => {
-    let x = item.getAnimations()
-    
-    x.forEach((animation) => {
-      animation.onfinish = ()=> {
-        console.log("e");
-      }
-    }) 
-  })
-  
-}
+/*   Array.from(document.getAnimations()).forEach((item) => { item.addEventListener("remove", determineAnimationTime(item))})
+ *///  
 
 
 
-
-
-
-
-
-
+/*
 function mobileStateChanged() {
   return ((window.innerWidth > mobileTolerance && width <= mobileTolerance) || (window.innerWidth <= mobileTolerance && width > mobileTolerance));
 }
@@ -179,3 +129,4 @@ function dragElement(elmnt) {
 
 resizeObserver.observe(document.body);
 Array.from(document.getElementsByClassName("divPopup")).forEach(dragElement);
+ */

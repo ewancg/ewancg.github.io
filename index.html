@@ -11,29 +11,60 @@
 	<meta name="twitter:title" content="Ewan Green">
 	<link rel="stylesheet" href="style.css">
 	<link rel='icon' href='resource/favicon.png' type='image/png'>
+ </style>
 </head>
 
 <body>
 
-	<div class="divContent">
-		<img class="circularImage noDock autoAnimate" src="resource/ewan.png" width="128px" height="128px">
+	<div class="content" id="contactPage">
+		<p class="subtitle uiText" id="contactHeader">Get in touch</p>
+		<hr>
+		<div display="flex" class="contactContainer">
+			<a class="contactButton" href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer">
+				<p class="contactIcon">0</p>
+				<p class="contactText">GitHub</p>
+			</a>
+			<a class="contactButton" href="" target="_blank" rel="noopener noreferrer">
+				<p class="contactIcon">1</p>
+				<p class="contactText">Discord</p>
+			</a>
+			<a class="contactButton" href="" target="_blank" rel="noopener noreferrer">
+				<p class="contactIcon">2</p>
+				<p class="contactText">Slack</p>
+			</a>
+			<a class="contactButton" href="https://fosstodon.org/@ewang" target="_blank" rel="noopener noreferrer">
+				<p class="contactIcon">3</p>
+				<p class="contactText">Mastodon</p>
+			</a>
+			<a class="contactButton" href="https://cohost.org/ewan" target="_blank" rel="noopener noreferrer">
+				<p class="contactIcon">4</p>
+				<p class="contactText">cohost</p>
+			</a>
+			<a class="contactButton" href="" target="_blank" rel="noopener noreferrer">
+				<p class="contactIcon">5</p>
+				<p class="contactText">Email</p>
+			</a>
+		</div>
+	</div>
+	<div class="dynamicHeader">
+		<img class="circularImage noDock autoAnimate" src="resource/ewan.png" width="128pt" height="128pt" draggable="false">
 		
-		<p class="onlyDock uiText autoAnimate" id="smallTitle">Ewan Green</p>
+		<p class="subtitle onlyDock uiText autoAnimate" id="smallTitle">Ewan Green</p>
 		<div id="divInnerContent" display="flex">
 			
 			<p id="title" class="noDock uiText autoAnimate">Ewan Green</p>
-			<p id="subtitle" class="noDock uiText autoAnimate">Software Engineer</p>
+			<p id="mainCaption" class="caption noDock uiText autoAnimate">Software Engineer</p>
 			
 			<div class="navButtonContainer autoAnimate" id="mainNavButton" defaultSelection="0" onload="createNavButton(this)">
-				<div class="navButton" id="summaryNavButton" onmousedown="showSummary()">Summary</div>
-				<div class="navButton" id="portfolioNavButton" onmousedown="showPortfolio()">Portfolio</div>
-				<div class="navButton" id="contactNavButton" onmousedown="showContact()">Contact</div>
+				<div class="navButton" id="summaryNavButton" callback="showSummary()">Summary</div>
+				<div class="navButton" id="portfolioNavButton" callback="showPortfolio()">Portfolio</div>
+				<div class="navButton" id="contactNavButton" callback="showContact()">Contact</div>
 			</div>
 		</div>
 	</div>
 	<!--
 
-	<div class="divContent" align="center">
+	<div class="dynamicHeader" align="center">
 		<div class="divHeader" align="center">
 			<img class="circularImage" src="resource/ewan.png" width="128px" height="128px">
 			<h1>Ewan Green</h1>
@@ -83,6 +114,6 @@
 							<div id="divPopupGray" onclick="hidePopup('all')"></div>
 						-->
 </body>
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 
 </html>
