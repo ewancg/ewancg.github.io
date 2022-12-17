@@ -1,115 +1,129 @@
+import Popup, {} from './popup.js';
 
-function showContact() {
-  dockNav(true);
-  window.location.hash = "contact"
-  document.getElementById("contactPage").setAttribute("shown", true);
-}
+// Todo: Make system more modular? Show/hide pages by attribute, provide "default" nav entry for no page (summary)
 
-function showPortfolio() {
-  window.location.hash = "portfolio"
-  dockNav(true);
-}
+const Navigation = {
+  dockNav(docked) {
+    let content = document.getElementsByClassName("dynamicHeader")[0];
+    /*   let fn = docked ? content.setAttribute : content.removeAttribute;
+      fn.call(content, "docked", "true") */
 
-function showSummary() {
-  dockNav(false);
-  history.pushState("", document.title, window.location.pathname + window.location.search);
-  document.getElementById("contactPage").setAttribute("shown", false);
-}
+    content.setAttribute("docked", docked);
+  },
 
-function dockNav(docked) {
-  let content = document.getElementsByClassName("dynamicHeader")[0];
-  /*   let fn = docked ? content.setAttribute : content.removeAttribute;
-    fn.call(content, "docked", "true") */
+  pages: [],
+  navigate(docked, hash, page) {
+    this.dockNav(docked);
+    
+    if(hash) window.location.hash = hash;
+    else history.pushState("", document.title, window.location.pathname + window.location.search);
+    
+    this.pages.forEach((elem) => {
+      elem.setAttribute("shown", false);
+    })
+    if(page) page.setAttribute("shown", true);
+  },
 
-  content.setAttribute("docked", docked);
-}
+  showContact() {
+    Navigation.navigate(true, "contact", document.getElementById("contactPage"));
+  },
 
-function animateNavButton(parent, object) {
+  showPortfolio() {
+    Navigation.navigate(true, "portfolio", document.getElementById("portfolioPage"));
+  },
+
+  showSummary() {
+    Navigation.navigate(false, "", null);
+  },
+
+  animateNavButton(parent, object) {
     let index;
     for (let e = 0; e < parent.children.length; e++) { if (parent.children[e] == object) index = e; }
     const count = parent.children.length;
-  
+
     let step = 100 / count;
     const style = document.createElement('style');
     style.textContent = `
-    #${parent.id} {
-        background-size: ${(step)}% 100%;
-        background-position-x: ${(50 * index)}%;
-      }
-      `;
+      #${parent.id} {
+          background-size: ${(step)}% 100%;
+          background-position-x: ${(50 * index)}%;
+        }
+        `;
     document.head.appendChild(style);
     Array.from(parent.children).forEach(function (child) {
       child.setAttribute("selected", false);
     })
     object.setAttribute("selected", true);
-  }
-  
-  function createNavButton(obj) {
+  },
+
+  createNavButton(obj) {
     obj.oncontextmenu = () => { return false; }
     let children = obj.children;
     for (let i = 0; i < children.length; i++) {
-      if(children[i].getAttribute("isNavButton") != true) {
+      if (children[i].getAttribute("isNavButton") != true) {
         children[i].onmousedown = function (evt) {
           switch (evt.button) {
             case 0: //Left
-            let callback = this.getAttribute("callback");
-            eval(callback);
-            animateNavButton(obj, this)
-            break;
-          case 1:
-            alert("open in new tab requested")
-            // open / in new tab
-            break;
+              let callback = this.getAttribute("callback");
+              eval(callback);
+              Navigation.animateNavButton(obj, this)
+              break;
+            case 1:
+              alert("open in new tab requested")
+              // open / in new tab
+              break;
             case 2:
               alert("custom context menu requested")
               // Show custom context menu
               break;
-            }
           }
-          children[i].setAttribute("isNavButton", true);
         }
-    }
-  }
-  
-  document.addEventListener('DOMContentLoaded', function () {
-    let evalUrlHash = () => {
-      const navButtonContainer = document.getElementById("mainNavButton");
-      let navButton;
-  
-      let summary = () => {
-        navButton = document.getElementById("summaryNavButton");
-        showSummary();
+        children[i].setAttribute("isNavButton", true);
       }
-  
-      if (window.location.hash) {
-        switch (window.location.hash) {
-          case "#contact":
-            navButton = document.getElementById("contactNavButton");
-            break;
-          case "#portfolio":
-            navButton = document.getElementById("portfolioNavButton");
-            break;
-          default:
-            console.log("Invalid URL hash provided. Showing summary.")
-            summary();
-            break;
-        }
-      } else summary();
-  
-      let navButtonContainers = document.getElementsByClassName("navButtonContainer");
-      Array.from(navButtonContainers).forEach((item) => {
-        if(item.getAttribute("isNavButton") != true) createNavButton(item);
-      });
-  
-      /*     if(navButton.getAttribute("isNavButton") != true) createNavButton(navButtonContainer)
-      */
-      eval(navButton.getAttribute("callback"));
-      animateNavButton(navButtonContainer, navButton);
-  
     }
-    evalUrlHash();
-    window.addEventListener("hashchange", evalUrlHash);
   }
-  )
-  
-export {animateNavButton, createNavButton, showContact, showPortfolio, showSummary};
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  Navigation.pages.push(document.getElementById("contactPage"), document.getElementById("portfolioPage"));
+
+  let evalUrlHash = () => {
+    Popup.hideAllPopups();
+    const navButtonContainer = document.getElementById("mainNavButton");
+    let navButton;
+
+    let summary = () => {
+      navButton = document.getElementById("summaryNavButton");
+      Navigation.showSummary();
+    }
+
+    if (window.location.hash) {
+      switch (window.location.hash) {
+        case "#contact":
+          navButton = document.getElementById("contactNavButton");
+          break;
+        case "#portfolio":
+          navButton = document.getElementById("portfolioNavButton");
+          break;
+        default:
+          console.log("Invalid URL hash provided. Showing summary.")
+          summary();
+          break;
+      }
+    } else summary();
+
+    let navButtonContainers = document.getElementsByClassName("navButtonContainer");
+    Array.from(navButtonContainers).forEach((item) => {
+      if (item.getAttribute("isNavButton") != true) Navigation.createNavButton(item);
+    });
+
+    eval(navButton.getAttribute("callback"));
+    Navigation.animateNavButton(navButtonContainer, navButton);
+
+  }
+  evalUrlHash();
+  window.addEventListener("hashchange", evalUrlHash);
+}
+)
+
+export default Navigation;

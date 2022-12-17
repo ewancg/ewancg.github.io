@@ -151,7 +151,7 @@ a:hover {
 	color: var(--color-light-two);
 }
 
-#divPopupGray {
+#popupGray {
 	position: fixed;
 	display: none;
 	width: 100%;
@@ -183,7 +183,7 @@ a:hover {
 
 
 
-.divPopup {
+.popup {
 	display: none;
 
 	background-color: var(--color-dark-two);
@@ -270,9 +270,19 @@ hr {
 	border-top: 0.075em solid #eeeefe;
 	overflow: visible;
 	text-align: center;
-	margin: 1.5em;
+	margin: 0;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 	min-width: 80%;
 	height: 5px;
+}
+
+code {
+	font-family: 'Ubuntu Mono', monospace;
+	border: 0.125em solid #000010;
+	padding: 0.25em;
+	border-radius: 0.25em;
+	background-color: #111121;
 }
 
 @font-face {
@@ -307,7 +317,7 @@ hr {
 }
 .contactButton:first-child { margin-left: 0em; }
 .contactButton:last-child { margin-right: 0em; }
-.contactButton:visited{ color: inherit; }
+.contactButton, .contactButton:visited{ color: inherit; }
 .contactButton:hover { color: #ccccec; }
 .contactButton:active { color: #aaaaca; }
 
@@ -333,8 +343,14 @@ hr {
 
 .navButton,
 .circularImage,
-.contactButton {
+.contactButton,
+*[obscured=true], 
+.popup[shown=false],
+ .noSelect {
 	user-select: none;
+}
+.contactDestination {
+	cursor: pointer;
 }
 
 .content,
@@ -349,7 +365,7 @@ hr {
 	border-radius: 1em;
 
 	border: none;
-	
+
 	justify-content: center;
 	align-items: center;
 	align-content: center;
@@ -368,6 +384,105 @@ hr {
 .content[shown=true] {
 	transform: translate(-50%, -50%) scale(100%);
 	display: flex;
+	visibility: visible;
+	opacity: 100%;
+}
+
+.shadeBehindPopup, .shadeBehindPopup[shown=false] {
+	visibility: collapse;
+	top: 0;
+	left: 0;
+	min-width: 100vw;
+	min-height: 100vh;
+	position: absolute;
+	
+	opacity: 0%;
+
+	backdrop-filter: blur(0) brightness(100%);
+	transition: backdrop-filter 0.3s, opacity 0.3s;
+}
+
+.shadeBehindPopup[shown=true] {
+	visibility: visible;
+	opacity: 100%;
+	backdrop-filter: blur(0.25em) brightness(60%);
+}
+
+.popup,
+.popup[shown=false] {
+	background-color: #222232;
+	color: var(--color-light-zero);
+
+	padding: 4em;
+	min-width: 14em;
+	z-index: 1;
+	
+	position: fixed;
+	overflow: scroll;
+	top: 50%;
+	left: 50%;
+
+	border-radius: 0.5em;
+	border: none;
+	border-bottom: 0.125em solid #111121;
+
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	display: flex;
+	flex-direction: column;
+
+	opacity: 0%;
+	transform: translate(-50%, -50%) scale(25%);
+	transition: opacity 0s, transform 0s;
+}
+
+.popup[shown=true] {
+	user-select:text;
+	display: flex;
+	visibility: visible;
+	opacity: 100%;
+	transform: translate(-50%, -50%) scale(100%);
+	transition: opacity 0.625s, transform 0.625s, width 0.625s;
+}
+
+@keyframes spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+.spinner, .spinner[hidden=false] {
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	border: solid .125em transparent;
+	border-bottom-color: #eeeefe;
+	visibility: visible;
+	display: initial;
+	animation: 0.5s linear infinite spinner;
+	
+}
+.spinner[hidden=true] {
+	visibility: collapse;
+	display: none;
+}
+
+.fetchError, .fetchError[shown=false],
+.fetchDependent, .fetchDependent[shown=false] {
+	display: none;
+	visibility: collapse;
+	opacity: 0%;
+
+	transition: opacity 0.5s;
+}
+.fetchError[shown=true],
+.fetchDependent[shown=true] {
+	display: initial;
 	visibility: visible;
 	opacity: 100%;
 }

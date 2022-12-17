@@ -11,11 +11,38 @@
 	<meta name="twitter:title" content="Ewan Green">
 	<link rel="stylesheet" href="style.css">
 	<link rel='icon' href='resource/favicon.png' type='image/png'>
- </style>
+	</style>
 </head>
 
 <body>
+	<div class="popup" id="popupDiscord">
+		<div display="flex" flex-direction="row">
+			<p class="fetchDependent uiText noSelect">Discord:&ensp;</p><code
+				class="fetchDependent uiText noSelect contactDestination"></code>
+		</div>
+		<p class="fetchError uiText noSelect"></p>
+		<div class="spinner"></div>
+	</div>
+	<div class="popup" id="popupSlack">
+		<div display="flex" flex-direction="row">
+			<p class="fetchDependent uiText noSelect">Slack:&ensp;</p><code
+				class="fetchDependent uiText noSelect contactDestination"></code>
+		</div>
+		<p class="fetchError uiText noSelect"></p>
+		<div class="spinner"></div>
+	</div>
+	<div class="popup" id="popupEmail">
+		<div display="flex" flex-direction="row">
+			<p class="fetchDependent uiText noSelect">Email:&ensp;</p><code
+				class="fetchDependent uiText noSelect contactDestination"></code>
+		</div>
+		<p class="fetchError uiText noSelect"></p>
+		<div class="spinner"></div>
+	</div>
 
+	<div class="content" id="portfolioPage">
+		<div class="gistDropdown"></div>
+	</div>
 	<div class="content" id="contactPage">
 		<p class="subtitle uiText" id="contactHeader">Get in touch</p>
 		<hr>
@@ -24,11 +51,11 @@
 				<p class="contactIcon">0</p>
 				<p class="contactText">GitHub</p>
 			</a>
-			<a class="contactButton" href="" target="_blank" rel="noopener noreferrer">
+			<a class="contactButton" callback="getContactData('Discord')" target="_blank" rel="noopener noreferrer">
 				<p class="contactIcon">1</p>
 				<p class="contactText">Discord</p>
 			</a>
-			<a class="contactButton" href="" target="_blank" rel="noopener noreferrer">
+			<a class="contactButton" callback="getContactData('Slack')" target="_blank" rel="noopener noreferrer">
 				<p class="contactIcon">2</p>
 				<p class="contactText">Slack</p>
 			</a>
@@ -40,79 +67,61 @@
 				<p class="contactIcon">4</p>
 				<p class="contactText">cohost</p>
 			</a>
-			<a class="contactButton" href="" target="_blank" rel="noopener noreferrer">
+			<a class="contactButton" callback="getContactData('Email')" target="_blank" rel="noopener noreferrer">
 				<p class="contactIcon">5</p>
 				<p class="contactText">Email</p>
 			</a>
 		</div>
 	</div>
+
 	<div class="dynamicHeader">
-		<img class="circularImage noDock autoAnimate" src="resource/ewan.png" width="128pt" height="128pt" draggable="false">
-		
+		<img class="circularImage noDock autoAnimate" src="resource/ewan.png" width="128pt" height="128pt"
+			draggable="false">
+
 		<p class="subtitle onlyDock uiText autoAnimate" id="smallTitle">Ewan Green</p>
 		<div id="divInnerContent" display="flex">
-			
+
 			<p id="title" class="noDock uiText autoAnimate">Ewan Green</p>
 			<p id="mainCaption" class="caption noDock uiText autoAnimate">Software Engineer</p>
-			
-			<div class="navButtonContainer autoAnimate" id="mainNavButton" defaultSelection="0" onload="createNavButton(this)">
-				<div class="navButton" id="summaryNavButton" callback="showSummary()">Summary</div>
-				<div class="navButton" id="portfolioNavButton" callback="showPortfolio()">Portfolio</div>
-				<div class="navButton" id="contactNavButton" callback="showContact()">Contact</div>
+
+			<div class="navButtonContainer autoAnimate" id="mainNavButton" defaultSelection="0"
+				onload="createNavButton(this)">
+				<div class="navButton" id="summaryNavButton" callback="Navigation.showSummary()">Summary</div>
+				<div class="navButton" id="portfolioNavButton" callback="Navigation.showPortfolio()">Portfolio</div>
+				<div class="navButton" id="contactNavButton" callback="Navigation.showContact()">Contact</div>
 			</div>
 		</div>
 	</div>
-	<!--
 
-	<div class="dynamicHeader" align="center">
-		<div class="divHeader" align="center">
-			<img class="circularImage" src="resource/ewan.png" width="128px" height="128px">
-			<h1>Ewan Green</h1>
-		</div>
-		<div class="divText">
-			<p>I'm a novice C/C++ programmer from Colorado.</p>
-		</div>
-		<div class="divButtons" align="center">
-			<a href="https://www.ptweb.me/profile/135" target="_blank" rel="noopener noreferrer"><button><i
-				class="fas fa-play"></i>&ensp;ptweb.me</button></a>
-				<a href="https://twitter.com/EwanGreen05" target="_blank" rel="noopener noreferrer"><button><i
-					class="fab fa-twitter"></i>&ensp;Twitter</button></a>
-					<a href="https://github.com/EwanGreen4" target="_blank" rel="noopener noreferrer"><button><i
-						class="fab fa-github"></i>&ensp;GitHub</button></a>
-			<button onclick="showPopup('popupDiscord')"><i class="fab fa-discord"></i>&ensp;Discord</button>
-			<a href="https://aemail.com/xkg9" target="_blank" rel="noopener noreferrer"><button><i
-				class="fas fa-envelope"></i>&ensp;Email</button></a>
-				<i class="fas fa-info-circle iconLink" onclick="showPopup('popupLicense')"></i>
-			</div>
-		</div>
-		<div id="popupDiscord" class="divPopup">
-			<h3 class="popupText" align="center">Discord:&ensp;<code
+	<!-- 	<div id="popupDiscord" class="popup">
+		<h3 class="popupText" align="center">Discord:&ensp;<code
 				onclick="selectElementText(document.getElementById('discordText'))"
 				id="discordText">Ewan Green#1526</code></h3>
-				<div class="divButtons" align="center">
-					<button vertical-align="center" onclick="hidePopup('popupDiscord')"><i
-						class="fas fa-times"></i>&ensp;Close</button>
-					</div>
-				</div>
-				<div id="popupLicense" class="divPopup">
-					<h3 class="popupText" align="center">This website uses third-party assets.</h3>
-					<p class="popupText" align="center">
-						<a href="https://fontawesome.com" target="_blank" rel="noopener noreferrer">FontAwesome
-							5.15.3</a>&ensp;-&ensp;<a href="https://fontawesome.com/license/free" target="_blank"
-							rel="noopener noreferrer">Custom License</a></br>
-							<a href="https://fonts.adobe.com/fonts/source-sans" target="_blank" rel="noopener noreferrer">Source Sans
-								Pro</a>&ensp;-&ensp;<a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
-								target="_blank" rel="noopener noreferrer">Open Font License</a><br>
-								<a href="https://design.ubuntu.com/font/" target="_blank" rel="noopener noreferrer">Ubuntu
-									Mono</a>&ensp;-&ensp;<a href="https://ubuntu.com/legal/font-licence" target="_blank"
-									rel="noopener noreferrer">Ubuntu Font Licence</a>
-								</p>
-								<div class="divButtons" align="center">
-									<button onclick="hidePopup('popupLicense')"><i class="fas fa-times"></i>&ensp;Close</button>
-								</div>
-							</div>
-							<div id="divPopupGray" onclick="hidePopup('all')"></div>
-						-->
+		<div class="divButtons" align="center">
+			<button vertical-align="center" onclick="hidePopup('popupDiscord')"><i
+					class="fas fa-times"></i>&ensp;Close</button>
+		</div>
+	</div>
+	<div id="popupLicense" class="popup">
+		<h3 class="popupText" align="center">This website uses third-party assets.</h3>
+		<p class="popupText" align="center">
+			<a href="https://fontawesome.com" target="_blank" rel="noopener noreferrer">FontAwesome
+				5.15.3</a>&ensp;-&ensp;<a href="https://fontawesome.com/license/free" target="_blank"
+				rel="noopener noreferrer">Custom License</a></br>
+			<a href="https://fonts.adobe.com/fonts/source-sans" target="_blank" rel="noopener noreferrer">Source Sans
+				Pro</a>&ensp;-&ensp;<a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+				target="_blank" rel="noopener noreferrer">Open Font License</a><br>
+			<a href="https://design.ubuntu.com/font/" target="_blank" rel="noopener noreferrer">Ubuntu
+				Mono</a>&ensp;-&ensp;<a href="https://ubuntu.com/legal/font-licence" target="_blank"
+				rel="noopener noreferrer">Ubuntu Font Licence</a>
+		</p>
+		<div class="divButtons" align="center">
+			<button onclick="hidePopup('popupLicense')"><i class="fas fa-times"></i>&ensp;Close</button>
+		</div>
+	</div>
+-->
+	<!-- 	<div id="shadeBehindPopup"></div>
+ -->
 </body>
 <script type="module" src="script.js"></script>
 

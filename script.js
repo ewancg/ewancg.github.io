@@ -1,4 +1,6 @@
-import { showContact, showPortfolio, showSummary } from './navigation.js';
+import Navigation, { } from './navigation.js';
+import Popup, { } from './popup.js';
+import Gist, { } from './gist.js';
 
 let width = window.innerWidth;
 let mobileTolerance = 680;
@@ -13,10 +15,71 @@ function determineAnimationTime() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () =>
+let contactInfo = new Map();
+function getContactData(requestName) {
+  Popup.showPopup(requestName);
+
+  if (!contactInfo.get(requestName)) {
+
+    const xhr = new XMLHttpRequest();
+    let url = `http://${window.location.host}/get/${requestName.toLowerCase()}`;
+    xhr.open("GET", url);
+
+    xhr.send();
+
+    let popup = Popup.current();
+    let determineStatus = () => {
+      Array.from(popup.getElementsByClassName("spinner")).forEach((i) => i.setAttribute("hidden", true));
+      if (xhr.status == 200) {
+        contactInfo.set(requestName, xhr.responseText.trim());
+        Array.from(popup.getElementsByClassName("fetchDependent")).forEach((i) => i.setAttribute("shown", true));
+        Array.from(popup.getElementsByClassName("fetchError")).forEach((i) => i.setAttribute("shown", false));
+        Array.from(popup.getElementsByClassName("contactDestination")).forEach((i) => i.innerText = contactInfo.get(requestName));
+      } else {
+        console.log(`Request to ${url} has failed with code ${xhr.status}`);
+        Array.from(popup.getElementsByClassName("fetchDependent")).forEach((i) => i.setAttribute("shown", false));
+        Array.from(popup.getElementsByClassName("fetchError")).forEach((i) => {
+          i.setAttribute("shown", true);
+          i.innerText = `Failed to get ${requestName} information with error ${xhr.status}`;
+        }
+        );
+      }
+    }
+
+    xhr.onerror = determineStatus;
+    xhr.onload = determineStatus;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
   Promise.all(document.getElementsByClassName("dynamicHeader")[0].getAnimations().map((anim) => anim.finished)).then(
     determineAnimationTime()
-  ))
+  );
+
+  function selectElementText(element) {
+    var doc = window.document, sel, range;
+    if (window.getSelection && doc.createRange) {
+      sel = window.getSelection();
+      range = doc.createRange();
+      range.selectNodeContents(element);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else if (doc.body.createTextRange) {
+      range = doc.body.createTextRange();
+      range.moveToElementText(element);
+      range.select();
+    }
+  };
+
+  Array.from(document.getElementsByClassName("contactDestination")).forEach((i) => i.addEventListener("click", () => selectElementText(i)));
+
+  Popup.popups.set("Discord", document.getElementById("popupDiscord"))
+  Popup.popups.set("Slack", document.getElementById("popupSlack"))
+  Popup.popups.set("Email", document.getElementById("popupEmail"));
+  Array.from(document.getElementsByClassName("contactButton")).forEach(element => {
+    element.addEventListener("mousedown", () => eval(element.getAttribute("callback")));
+  });
+})
 
 /*   Array.from(document.getAnimations()).forEach((item) => { item.addEventListener("remove", determineAnimationTime(item))})
  *///  
@@ -32,7 +95,7 @@ let resizeObserver = new ResizeObserver(() => {
   if (width == window.innerWidth) return;
   if (mobileStateChanged()) {
     hidePopup("all");
-    Array.from(document.getElementsByClassName("divPopup")).forEach(dragElement);
+    Array.from(document.getElementsByClassName("popup")).forEach(dragElement);
   }
   width = window.innerWidth;
 });
@@ -50,13 +113,13 @@ function showPopup(id) {
   } else {
     document.getElementById(id).style.display = "flex";
   }
-  document.getElementById("divPopupGray").style.display = "block";
+  document.getElementById("popupGray").style.display = "block";
 
 };
 
 function hidePopup(id) {
   if (id == "all") {
-    var els = document.querySelectorAll('.divPopup');
+    var els = document.querySelectorAll('.popup');
     for (var i = 0; i < els.length; i++) {
       els[i].setAttribute("style", "display", "none");
       els[i].setAttribute("style", "left", "50%");
@@ -67,7 +130,7 @@ function hidePopup(id) {
     document.getElementById(id).style.left = "50%";
     document.getElementById(id).style.top = "50%";
   }
-  document.getElementById("divPopupGray").style.display = "none";
+  document.getElementById("popupGray").style.display = "none";
 };
 
 function selectElementText(el, win) {
@@ -128,5 +191,5 @@ function dragElement(elmnt) {
 };
 
 resizeObserver.observe(document.body);
-Array.from(document.getElementsByClassName("divPopup")).forEach(dragElement);
+Array.from(document.getElementsByClassName("popup")).forEach(dragElement);
  */

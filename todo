@@ -3,3 +3,5 @@ add portfolio page
     - dropdown
 
 fix reverse animation for undock; small title disappears and nav button container snaps left before animation
+use prism for syntax highlighting
+blog?
