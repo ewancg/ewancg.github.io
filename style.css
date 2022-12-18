@@ -288,6 +288,9 @@ code {
 	background-color: #111121;
 }
 .codeContainer {
+	font-size: 12px;
+/* 	background-color: white;
+ */	width: 100%;
 	overflow: scroll;
 }
 .contactDestination {

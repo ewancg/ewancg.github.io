@@ -3,6 +3,7 @@
 
 <head>
 	<title>Ewan Green</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8" />
 	<meta property="og:url" content="https://ewan.horse/">
@@ -10,9 +11,12 @@
 	<meta property="og:title" content="Ewan Green">
 	<meta name="twitter:title" content="Ewan Green">
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="prism.css">
-	<link rel="stylesheet" href="prism-theme.css">
 	<link rel='icon' href='resource/favicon.png' type='image/png'>
+	<link
+	rel="stylesheet"
+	data-name="vs/editor/editor.main"
+	href="./node_modules/monaco-editor/dev/vs/editor/editor.main.css"
+/>
 	</style>
 </head>
 
@@ -44,152 +48,6 @@
 
 	<div class="content" id="portfolioPage">
 		<div class="gistDropdown">
-			<pre class="codeContainer language-cpp"><code class="language-cpp">
-				// Title bar customization with Qt - Ewan Green 2022
-
-#include "TitleBar.h"
-
-#include <QOperatingSystemVersion>
-#include <QtDebug>
-
-#if defined(Q_OS_WINDOWS)
-#include <Windows.h>
-
-void customizeNativeTitleBar(WId w, const TitleBarColors &colors) noexcept {
-  if (QOperatingSystemVersion::current() >=
-      QOperatingSystemVersion::Windows10) {
-    static ULONG osBuildNumber = *reinterpret_cast<DWORD *>(0x7FFE0000 + 0x260);
-    // https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-kuser_shared_data#syntax
-    // Member "NtMinorVersion" of _KUSER_SHARED_DATA. Address is reserved by the
-    // OS. Alternatively, the build number can be acquired through GetVersionEx
-    // or RtlGetVersion, but those require a proper app manifest.
-
-    auto qColorToColorRef = [](const QColor &col) -> COLORREF {
-      return (col.red() | col.green() << 8 | col.blue() << 16);
-    };
-
-    enum {
-      NoDwm,
-      NoDwmSetWindowAttribute,
-      NoBackgroundBrush,
-      NoDarkMode,
-      NoBorderColor,
-      NoCaptionColor,
-      NoTextColor
-    };
-
-    static auto error = [](int i) {
-      static QHash<const int, const char *> errorTable = {
-          {NoDwm, "DWM library not found."},
-          {NoDwmSetWindowAttribute, "DwmSetWindowAttribute not found."},
-          {NoDarkMode, "Unable to set immersive dark mode attribute."},
-          {NoBackgroundBrush, "Unable to set background brush attribute."},
-          {NoBorderColor, "Unable to set window border color attribute."},
-          {NoCaptionColor, "Unable to set window caption color attribute."},
-          {NoTextColor, "Unable to set window text color attribute."},
-      };
-      static QVector<int> alreadyErrored;
-      if (!alreadyErrored.contains(i)) {
-        qWarning() << "Error while setting title bar attributes: "
-                   << QObject::tr(errorTable.find(i).value());
-        alreadyErrored.push_back(i);
-      }
-    };
-
-    // We are loading the library dynamically and not using the dwmapi header
-    // because the values we use in the DWMWINDOWATTRIBUTE enum are only present
-    // in very new versions of the Windows SDK, which is rarely in use by Qt
-    // apps. If you are using SDK version 22000 or later, you can include the
-    // header & link dwmapi statically and save a lot of code.
-    static auto hdwmapi = LoadLibraryW(L"dwmapi.dll");
-    if (!hdwmapi) {
-      error(NoDwm);
-      return;
-    }
-
-    // https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute
-    typedef int(WINAPI * DWMSETWINDOWATTRIBUTE)(
-        HWND hwnd, DWORD dwAttribute, LPCVOID pvAttribute,
-        DWORD cbAttribute);  // typedef is required here thanks to WINAPI
-                             // keyword (__stdcall)
-    static auto DwmSetWindowAttribute = reinterpret_cast<DWMSETWINDOWATTRIBUTE>(
-        GetProcAddress(hdwmapi, "DwmSetWindowAttribute"));
-    if (!DwmSetWindowAttribute) {
-      error(NoDwmSetWindowAttribute);
-      return;
-    }
-
-    auto hwnd = reinterpret_cast<HWND>(w);
-
-    quint32 darkTitleBar = colors.isDark;
-    if (FAILED(DwmSetWindowAttribute(
-            hwnd,
-            (osBuildNumber >=
-             18985) /* 18985 is a build of Windows 10 that presumably
-                   displaced the attribute in the enum*/
-                ? 20
-                : 19 /*DWMWINDOWATTRIBUTE::DWMWA_USE_IMMERSIVE_DARK_MODE*/,
-            &darkTitleBar, sizeof(quint32))))
-      error(NoDarkMode);
-
-    if (osBuildNumber >= 22000) {
-      // 22000 is the first build of Windows 11
-      if (colors.brush != TitleBarColors::Default) {
-        if (FAILED(DwmSetWindowAttribute(
-                hwnd, 38 /*DWMWINDOWATTRIBUTE::DWMWA_SYSTEMBACKDROP_TYPE*/,
-                &colors.brush, sizeof(colors.brush))))
-          error(NoBackgroundBrush);
-      }
-
-      if (colors.border.isValid()) {
-        COLORREF b = qColorToColorRef(colors.border);
-        if (FAILED(DwmSetWindowAttribute(
-                hwnd, 34 /*DWMWINDOWATTRIBUTE::DWMWA_BORDER_COLOR*/, &b,
-                sizeof(b))))
-          error(NoBorderColor);
-      }
-
-      if (colors.caption.isValid()) {
-        COLORREF c = qColorToColorRef(colors.caption);
-        if (FAILED(DwmSetWindowAttribute(
-                hwnd, 35 /*DWMWINDOWATTRIBUTE::DWMWA_CAPTION_COLOR*/, &c,
-                sizeof(c))))
-          error(NoCaptionColor);
-      }
-
-      if (colors.text.isValid()) {
-        COLORREF t = qColorToColorRef(colors.text);
-        if (FAILED(DwmSetWindowAttribute(
-                hwnd, 36 /*DWMWINDOWATTRIBUTE::DWMWA_TEXT_COLOR*/, &t,
-                sizeof(t))))
-          error(NoTextColor);
-      }
-    }
-  }
-}
-#endif
-
-// macOS implementation must go in its own file because it uses Objective C
-// syntax. See TitleBarMacOs.mm (must be called something other than this file,
-// even if the extension changes -- some build systems will overwrite the
-// resulting object files if they are named the same.)
-
-void setTitleBar(QWidget *w, const TitleBarColors &colors) noexcept {
-  if (w->windowHandle() == nullptr)
-    return;  // Widget is not top-level, and therefore does not have borders
-  if (w->property("HasStyledTitleBar") == true)
-    return;  // No need to do this multiple times
-#if defined(Q_OS_WINDOWS) || defined(Q_OS_MACOS)
-  customizeNativeTitleBar(w->window()->winId(), colors);
-#else
-  qWarning() << QObject::tr(
-      "Title bar customization is not supported on this platform.");
-#endif
-  w->setProperty("HasStyledTitleBar", true);
-}
-
-				};
-			</code></pre>
 		</div>
 	</div>
 	<div class="content" id="contactPage">
@@ -273,6 +131,17 @@ void setTitleBar(QWidget *w, const TitleBarColors &colors) noexcept {
  -->
 </body>
 <script type="module" src="script.js"></script>
-<script src="prism.js"></script>
+<script>
+	var require = { paths: { vs: '../node_modules/monaco-editor/dev/vs' } };
+</script>
+<script src="./node_modules/monaco-editor/dev/vs/loader.js"></script>
+<script src="./node_modules/monaco-editor/dev/vs/editor/editor.main.nls.js"></script>
+<script src="./node_modules/monaco-editor/dev/vs/editor/editor.main.js"></script>
 
+<!-- <script>
+	var editor = monaco.editor.create(document.getElementById('container'), {
+		value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+		language: 'javascript'
+	}); -->
+</script>
 </html>

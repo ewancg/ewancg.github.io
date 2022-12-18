@@ -4,6 +4,8 @@ add portfolio page
 
 fix reverse animation for undock; small title disappears and nav button container snaps left before animation
 fix left ~2/3 of popup being obscured for mouse input (why)
+replace ajax with fetch
+clean up monaco loading
 
 use prism for syntax highlighting
 blog?
