@@ -281,7 +281,7 @@ code, .gistCode {
 	font-family: 'Ubuntu Mono', monospace;
 }
 
-.dropdown, .dropdown[expanded=false] {
+.dropdown {
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
 	border: 1px solid blue;
@@ -293,19 +293,23 @@ code, .gistCode {
 	align-items: stretch;
 /* 	align-content: space-between;
  */}
- .dropdownContents {
+ .dropdownContents,
+ .dropdownContents[expanded=false] 
+  {
     padding: 0;
 	margin-top: 0.75em;
 	overflow: scroll;
 	max-height: 80vh;
- }
-.dropdown[expanded=false] .dropdownContents {
+	transition: opacity 1s;
+
 	visibility: collapse;
 	display: none;
-}
-.dropdown[expanded=true] .dropdownContents {
-	visibility: initial;
+	opacity: 0%;
+ }
+.dropdownContents[expanded=true]  {
+	visibility: visible;
 	display: flex;
+	opacity: 100%;
 }
 .dropdownTitle {
 	flex: 1 0 0;
@@ -443,9 +447,12 @@ code, .gistCode {
 
 #contactPage {
 	padding: 4em;
+	background-color: var(--color-dark-two);
+	color: var(--color-light-zero);
+    border-radius: 1em;
+
 }
 #portfolioPage {
-	padding: 2em;
 	overflow: scroll;
 	max-height: 80vh;
 	display: flex;
@@ -456,14 +463,11 @@ code, .gistCode {
 
 .content,
 .content[shown=false] {
-	background-color: var(--color-dark-two);
-	color: var(--color-light-zero);
-
-/* 	padding: 4em;
- */	min-width: 34em;
-
+	
+	/* 	padding: 4em;
+	*/	min-width: 34em;
+	
 	top: 50%;
-	border-radius: 1em;
 
 	border: none;
 

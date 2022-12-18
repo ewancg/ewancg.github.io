@@ -54,8 +54,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             dataXhr.onload = () => {
               const destination = document.createElement("div");
               destination.classList.toggle("dropdownContents", true)
-              dropdown.appendChild(destination);
-              dropdown.setAttribute("expanded" , true);
   
               // gist dropdown, somewhere
               let container = document.createElement("div");
@@ -99,20 +97,11 @@ document.addEventListener('DOMContentLoaded', async function () {
               footer.appendChild(lang);
               footer.appendChild(lines);
               footer.appendChild(size);
-              /*
-              dest.getElementsByClassName("locCounter")[0].innerText = dataXhr.responseText.split(/\r\n|\r|\n/).length - 1;
-              dest.getElementsByClassName("sizeCounter")[0].innerText = `${gist.files[key].size} bytes`;
-              dest.getElementsByClassName("filename")[0].innerText = gist.files[key].filename;
-              dest.getElementsByClassName("description")[0].innerText = gist.description;
-              */
-  
-              console.log(
-                `
-                          ${gist.description.trim()};
-                          ${gist.files[key].filename}; ${gist.files[key].language} (${languageAliases.get(gist.files[key].language)});
-                          ${dataXhr.responseText.split(/\r\n|\r|\n/).length - 1} lines, ${gist.files[key].size} bytes
-                          `)
-  
+              
+              destination.setAttribute("expanded" , true);
+              dropdown.setAttribute("expanded" , true);
+              dropdown.appendChild(destination);
+              
               // placeholder
               // also set document description, filename, filesize, and language, set up prismjs
             }
