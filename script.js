@@ -22,9 +22,8 @@ function getContactData(requestName) {
   if (!contactInfo.get(requestName)) {
 
     const xhr = new XMLHttpRequest();
-    let url = `http://${window.location.host}/get/${requestName.toLowerCase()}`;
+    let url = `http://${window.location.host}:5000/get/${requestName.toLowerCase()}`;
     xhr.open("GET", url);
-
     xhr.send();
 
     let popup = Popup.current();

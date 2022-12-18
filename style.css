@@ -279,10 +279,19 @@ hr {
 
 code {
 	font-family: 'Ubuntu Mono', monospace;
+}
+.contactDestination, .codeContainer {
 	border: 0.125em solid #000010;
+	max-width: 50vw;
 	padding: 0.25em;
 	border-radius: 0.25em;
 	background-color: #111121;
+}
+.codeContainer {
+	overflow: scroll;
+}
+.contactDestination {
+	cursor: pointer;
 }
 
 @font-face {
@@ -349,8 +358,14 @@ code {
  .noSelect {
 	user-select: none;
 }
-.contactDestination {
-	cursor: pointer;
+
+#contactPage {
+	padding: 4em;
+}
+#portfolioPage {
+	padding: 2em;
+	overflow: scroll;
+	max-height: 80vh;
 }
 
 .content,
@@ -358,8 +373,8 @@ code {
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
 
-	padding: 4em;
-	min-width: 34em;
+/* 	padding: 4em;
+ */	min-width: 34em;
 
 	top: 50%;
 	border-radius: 1em;
