@@ -7,11 +7,11 @@ const Popup = {
     current() { return currentPopup; },
     showPopup(name, state = true) {
         if(state) Popup.hideAllPopups();
-        document.body.setAttribute("obscured", state);
+        document.body.toggleAttribute("obscured", state);
         let popup = Popup.popups.get(name);
-        popup.setAttribute("shown", state);
+        popup.toggleAttribute("shown", state);
         currentPopup = popup;
-        Popup.shade.setAttribute("shown", state);
+        Popup.shade.toggleAttribute("shown", state);
     },
     hidePopup(name) {
         Popup.showPopup(name, false)
@@ -25,7 +25,7 @@ const Popup = {
 document.addEventListener('DOMContentLoaded', function () {
     Popup.shade = document.createElement("div");
     Popup.shade.classList.add("shadeBehindPopup");
-    Popup.shade.setAttribute("shown", false);
+    Popup.shade.toggleAttribute("shown", false);
     Popup.shade.addEventListener("click", Popup.hideAllPopups);
     document.body.appendChild(Popup.shade);
 })

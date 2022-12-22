@@ -28,17 +28,17 @@ function getContactData(requestName) {
 
     let popup = Popup.current();
     let determineStatus = () => {
-      Array.from(popup.getElementsByClassName("spinner")).forEach((i) => i.setAttribute("hidden", true));
+      Array.from(popup.getElementsByClassName("spinner")).forEach((i) => i.toggleAttribute("hidden", true));
       if (xhr.status == 200) {
         contactInfo.set(requestName, xhr.responseText.trim());
-        Array.from(popup.getElementsByClassName("fetchDependent")).forEach((i) => i.setAttribute("shown", true));
-        Array.from(popup.getElementsByClassName("fetchError")).forEach((i) => i.setAttribute("shown", false));
+        Array.from(popup.getElementsByClassName("fetchDependent")).forEach((i) => i.toggleAttribute("shown", true));
+        Array.from(popup.getElementsByClassName("fetchError")).forEach((i) => i.toggleAttribute("shown", false));
         Array.from(popup.getElementsByClassName("contactDestination")).forEach((i) => i.innerText = contactInfo.get(requestName));
       } else {
         console.log(`Request to ${url} has failed with code ${xhr.status}`);
-        Array.from(popup.getElementsByClassName("fetchDependent")).forEach((i) => i.setAttribute("shown", false));
+        Array.from(popup.getElementsByClassName("fetchDependent")).forEach((i) => i.toggleAttribute("shown", false));
         Array.from(popup.getElementsByClassName("fetchError")).forEach((i) => {
-          i.setAttribute("shown", true);
+          i.toggleAttribute("shown", true);
           i.innerText = `Failed to get ${requestName} information with error ${xhr.status}`;
         }
         );

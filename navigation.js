@@ -5,10 +5,7 @@ import Popup, {} from './popup.js';
 const Navigation = {
   dockNav(docked) {
     let content = document.getElementsByClassName("dynamicHeader")[0];
-    /*   let fn = docked ? content.setAttribute : content.removeAttribute;
-      fn.call(content, "docked", "true") */
-
-    content.setAttribute("docked", docked);
+    content.toggleAttribute("docked", docked);
   },
 
   pages: [],
@@ -19,9 +16,9 @@ const Navigation = {
     else history.pushState("", document.title, window.location.pathname + window.location.search);
     
     this.pages.forEach((elem) => {
-      elem.setAttribute("shown", false);
+      elem.toggleAttribute("shown", false);
     })
-    if(page) page.setAttribute("shown", true);
+    if(page) page.toggleAttribute("shown", true);
   },
 
   showContact() {
@@ -51,9 +48,9 @@ const Navigation = {
         `;
     document.head.appendChild(style);
     Array.from(parent.children).forEach(function (child) {
-      child.setAttribute("selected", false);
+      child.toggleAttribute("selected", false);
     })
-    object.setAttribute("selected", true);
+    object.toggleAttribute("selected", true);
   },
 
   createNavButton(obj) {
@@ -78,7 +75,7 @@ const Navigation = {
               break;
           }
         }
-        children[i].setAttribute("isNavButton", true);
+        children[i].toggleAttribute("isNavButton", true);
       }
     }
   }

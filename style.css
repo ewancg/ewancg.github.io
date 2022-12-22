@@ -229,7 +229,8 @@ a:hover {
 	--color-light-two: #BBBBCB;
 
 	--dock-animation-time: 0.5s;
-	--real-dock-animation-time: 0ms; /* Will be swapped out with dock-animation-time's value after initial animation */
+	--real-dock-animation-time: 0ms;
+	/* Will be swapped out with dock-animation-time's value after initial animation */
 }
 
 body {
@@ -237,8 +238,8 @@ body {
 	background-color: var(--color-dark-zero);
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 12pt;
-	margin: none;
-	padding: none;
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
 }
 
@@ -277,7 +278,8 @@ hr {
 	height: 5px;
 }
 
-code, .gistCode {
+code,
+.gistCode {
 	font-family: 'Ubuntu Mono', monospace;
 }
 
@@ -291,51 +293,79 @@ code, .gistCode {
 	flex-direction: column;
 	justify-content: center;
 	align-items: stretch;
-/* 	align-content: space-between;
- */}
- .dropdownContents,
- .dropdownContents[expanded=false] 
-  {
-    padding: 0;
-	margin-top: 0.75em;
+	/* 	align-content: space-between;
+ */
+	max-height: auto;
+    transition: max-height 1s;
+}
+.dropdown[expanded] {
+	max-height: 100vh;
+}
+.dropdownContents {
+	transition: max-height 0.5s ease, opacity 1s;
+}
+.dropdown:not([expanded]) .dropdownContents {
+	padding: 0;
 	overflow: scroll;
-	max-height: 80vh;
-	transition: opacity 1s;
-
+	max-height: 0;
+/* 	
 	visibility: collapse;
-	display: none;
+	display: none; */
 	opacity: 0%;
- }
-.dropdownContents[expanded=true]  {
+}
+.dropdown[expanded] .dropdownContents {
 	visibility: visible;
+	max-height: 80vh;
+	padding-top: 0.75em;
 	display: flex;
 	opacity: 100%;
 }
-.dropdownTitle {
-	flex: 1 0 0;
-}
-.dropdownHeader {
-	display: flex;
-	flex-direction: row;
-	
-	justify-content: center;
-	align-items:center;
-	align-content: space-between;
-}
+
 .dropdownIcon {
+
 	margin-left: 1em;
 	min-width: 1em;
 	max-width: 1em;
 	min-height: 1em;
 	max-height: 1em;
+	transition: transform 1s;
+
+}
+.dropdown:not([expanded]) .dropdownIcon {
+	width: 0.5em;
+	height: 0.5em;
+	border: solid .125em transparent;
+	border-bottom-color: #eeeefe;
+	border-right-color: #eeeefe;
+	visibility: visible;
+	transform: rotate(45deg);
+}
+.dropdown[expanded] .dropdownIcon {
+	transform: rotate(225deg);
 }
 
-.contactDestination, .codeContainer {
+.dropdownTitle {
+	flex: 1 0 0;
+}
+
+.dropdownHeader {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+	align-content: space-between;
+}
+
+
+.contactDestination,
+.codeContainer {
 	border: 0.125em solid #000010;
 	padding: 0.25em;
 	border-radius: 0.25em;
 	background-color: #111121;
 }
+
 .codeContainer {
 	margin: 0;
 	margin-top: 0.125em;
@@ -347,12 +377,20 @@ code, .gistCode {
 	flex-direction: column;
 	padding: 0;
 }
+.codeContainer:first-child {
+	margin-top: 0;
+}
+.codeContainer:last-child {
+	margin-bottom: 0;
+}
+
 .gistCode {
 	margin: 0;
 	padding: 0.5em;
 	font-size: 12px;
-    overflow: scroll;
+	overflow: scroll;
 }
+
 .codeFooter {
 	background-color: #111121;
 	padding: 0.5em;
@@ -360,22 +398,26 @@ code, .gistCode {
 	flex-direction: row;
 	bottom: 0;
 }
+
 .footerText:first-child {
 	margin-left: 0;
 }
+
 .footerText:last-child {
 	margin-right: 0;
 }
+
 .footerText {
 	font-size: 12px;
 	color: #444464;
 	margin: 0;
-	
+
 	margin-left: 0.5em;
 	margin-right: 0.5em;
-	
+
 	padding: 0;
 }
+
 .contactDestination {
 	cursor: pointer;
 }
@@ -385,15 +427,18 @@ code, .gistCode {
 	src: url("resource/icons.woff");
 }
 
-.contactText, .contactIcon {
+.contactText,
+.contactIcon {
 	margin: 0;
 	padding: 0;
 }
+
 .contactIcon {
 	font-family: 'Icons', 'Source Sans Pro';
 	font-size: 13pt;
 	margin-right: 0.25em;
 }
+
 .contactText {
 	text-underline-offset: 0.15em;
 	margin-top: calc(0.15em * -0.5);
@@ -410,20 +455,36 @@ code, .gistCode {
 	display: flex;
 	flex-direction: row;
 }
-.contactButton:first-child { margin-left: 0em; }
-.contactButton:last-child { margin-right: 0em; }
-.contactButton, .contactButton:visited{ color: inherit; }
-.contactButton:hover { color: #ccccec; }
-.contactButton:active { color: #aaaaca; }
+
+.contactButton:first-child {
+	margin-left: 0em;
+}
+
+.contactButton:last-child {
+	margin-right: 0em;
+}
+
+.contactButton,
+.contactButton:visited {
+	color: inherit;
+}
+
+.contactButton:hover {
+	color: #ccccec;
+}
+
+.contactButton:active {
+	color: #aaaaca;
+}
 
 .contactContainer {
 	display: flex;
-	justify-content:space-between;
+	justify-content: space-between;
 	flex-direction: row;
 }
 
 #mainCaption {
-	margin: none;
+	margin: 0;
 	margin-bottom: 1.25em;
 	text-align: right;
 }
@@ -439,9 +500,9 @@ code, .gistCode {
 .navButton,
 .circularImage,
 .contactButton,
-*[obscured=true], 
-.popup[shown=false],
- .noSelect {
+*[obscured],
+.popup:not([shown]),
+.noSelect {
 	user-select: none;
 }
 
@@ -449,24 +510,26 @@ code, .gistCode {
 	padding: 4em;
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
-    border-radius: 1em;
+	border-radius: 1em;
 
 }
+
 #portfolioPage {
 	overflow: scroll;
 	max-height: 80vh;
 	display: flex;
 	flex-direction: column;
-    align-items: stretch;
-	
+	align-items: stretch;
+
 }
 
 .content,
-.content[shown=false] {
-	
+.content:not([shown]) {
+
 	/* 	padding: 4em;
-	*/	min-width: 34em;
-	
+	*/
+	min-width: 34em;
+
 	top: 50%;
 
 	border: none;
@@ -486,42 +549,43 @@ code, .gistCode {
 	transition: opacity 1.5s, transform .625s;
 }
 
-.content[shown=true] {
+.content[shown] {
 	transform: translate(-50%, -50%) scale(100%);
 	display: flex;
 	visibility: visible;
 	opacity: 100%;
 }
 
-.shadeBehindPopup, .shadeBehindPopup[shown=false] {
+.shadeBehindPopup,
+.shadeBehindPopup:not([shown]) {
 	visibility: collapse;
 	top: 0;
 	left: 0;
 	min-width: 100vw;
 	min-height: 100vh;
 	position: absolute;
-	
+
 	opacity: 0%;
 
 	backdrop-filter: blur(0) brightness(100%);
 	transition: backdrop-filter 0.3s, opacity 0.3s;
 }
 
-.shadeBehindPopup[shown=true] {
+.shadeBehindPopup[shown] {
 	visibility: visible;
 	opacity: 100%;
 	backdrop-filter: blur(0.25em) brightness(60%);
 }
 
 .popup,
-.popup[shown=false] {
+.popup:not([shown]) {
 	background-color: #222232;
 	color: var(--color-light-zero);
 
 	padding: 4em;
 	min-width: 14em;
 	z-index: 1;
-	
+
 	position: fixed;
 	overflow: scroll;
 	top: 50%;
@@ -543,8 +607,8 @@ code, .gistCode {
 	transition: opacity 0s, transform 0s;
 }
 
-.popup[shown=true] {
-	user-select:text;
+.popup[shown] {
+	user-select: text;
 	display: flex;
 	visibility: visible;
 	opacity: 100%;
@@ -556,12 +620,14 @@ code, .gistCode {
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(359deg);
 	}
 }
 
-.spinner, .spinner[hidden=false] {
+.spinner,
+.spinner:not([hidden]) {
 	border-radius: 50%;
 	width: 1em;
 	height: 1em;
@@ -570,23 +636,26 @@ code, .gistCode {
 	visibility: visible;
 	display: initial;
 	animation: 0.5s linear infinite spinner;
-	
 }
-.spinner[hidden=true] {
+
+.spinner[hidden] {
 	visibility: collapse;
 	display: none;
 }
 
-.fetchError, .fetchError[shown=false],
-.fetchDependent, .fetchDependent[shown=false] {
+.fetchError,
+.fetchError:not([shown]),
+.fetchDependent,
+.fetchDependent:not([shown]) {
 	display: none;
 	visibility: collapse;
 	opacity: 0%;
 
 	transition: opacity 0.5s;
 }
-.fetchError[shown=true],
-.fetchDependent[shown=true] {
+
+.fetchError[shown],
+.fetchDependent[shown] {
 	display: initial;
 	visibility: visible;
 	opacity: 100%;
@@ -657,7 +726,9 @@ code, .gistCode {
 	}
 }
 
-.dynamicHeader {
+.dynamicHeader,
+.dynamicHeader:not([docked]) 
+{
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
 
@@ -683,15 +754,14 @@ code, .gistCode {
 	position: fixed;
 	left: 50%;
 	overflow: hidden;
-}
 
-.dynamicHeader[docked=true] {
-	animation: dockHeader ease var(--real-dock-animation-time);
+	/* Undocked */
+	animation: undockHeader ease var(--real-dock-animation-time);
 	animation-fill-mode: forwards;
 }
 
-.dynamicHeader[docked=false] {
-	animation: undockHeader ease var(--real-dock-animation-time);
+.dynamicHeader[docked] {
+	animation: dockHeader ease var(--real-dock-animation-time);
 	animation-fill-mode: forwards;
 }
 
@@ -753,12 +823,12 @@ code, .gistCode {
 	transition-timing-function: ease;
 }
 
-.dynamicHeader[docked=true] .navButtonContainer {
+.dynamicHeader[docked] .navButtonContainer {
 	animation: dockNavButtons var(--real-dock-animation-time) ease;
 	animation-fill-mode: forwards;
 }
 
-.dynamicHeader[docked=false] .navButtonContainer {
+.dynamicHeader:not([docked]) .navButtonContainer {
 	animation: undockNavButtons var(--real-dock-animation-time) ease;
 	animation-fill-mode: forwards;
 }
@@ -787,15 +857,15 @@ code, .gistCode {
 	transition-duration: 0.3s;
 }
 
-.navButton[selected=true] {
+.navButton[selected] {
 	color: #dddded;
 }
 
-.navButton[selected=false] {
+.navButton:not([selected]) {
 	color: #bbbbcb;
 }
 
-.navButton[selected=false]:hover {
+.navButton:not([selected]):hover {
 	animation: hoverNavButton 0.5s;
 	animation-fill-mode: forwards;
 }
@@ -881,12 +951,12 @@ code, .gistCode {
 	}
 }
 
-.dynamicHeader[docked=true] .noDock {
+.dynamicHeader[docked] .noDock {
 	animation: dockNoDocks var(--real-dock-animation-time) ease;
 	animation-fill-mode: forwards;
 }
 
-.dynamicHeader[docked=false] .noDock {
+.dynamicHeader:not([docked]) .noDock {
 	animation: undockNoDocks var(--real-dock-animation-time) ease;
 	animation-fill-mode: forwards;
 }
@@ -903,24 +973,29 @@ code, .gistCode {
 	75% {
 		visibility: visible;
 		display: inline-block;
-		opacity: 0%;	}
+		opacity: 0%;
+	}
 
 	100% {
 		visibility: visible;
 		display: inline-block;
-		opacity: 100%;	}
+		opacity: 100%;
+	}
 }
+
 @keyframes undockOnlyDocks {
 	0% {
 		visibility: visible;
 		display: inline-block;
 		opacity: 100%;
-	}	
+	}
+
 	25% {
 		visibility: visible;
 		display: inline-block;
 		opacity: 0%;
 	}
+
 	100% {
 		visibility: collapse;
 		display: none;
@@ -934,13 +1009,14 @@ code, .gistCode {
 	opacity: 0%;
 }
 
-.dynamicHeader[docked=true] .onlyDock {
+.dynamicHeader[docked] .onlyDock {
 	visibility: visible;
 	display: inline-block;
 	animation: dockOnlyDocks var(--real-dock-animation-time) ease;
 	animation-fill-mode: forwards;
 }
-.dynamicHeader[docked=false] .onlyDock {
+
+.dynamicHeader:not([docked]) .onlyDock {
 	visibility: collapse;
 	display: none;
 	animation: undockOnlyDocks var(--real-dock-animation-time) ease;
