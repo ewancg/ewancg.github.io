@@ -1,208 +1,139 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
-
-:root
-{
-	--color-dark-zero:  #000010;
-	--color-dark-one:   #111121;
-	--color-dark-two:   #222232;
-	--color-dark-three: #333343;
-	
-	--color-light-zero: #FFFFFF;
-	--color-light-one:  #DDDDED;
-	--color-light-two:  #BBBBCB;
-}
-
-@keyframes fadePopupIn
-{
-	from
-	{
+/* 
+@keyframes fadePopupIn {
+	from {
 		opacity: 0;
 	}
-	to
-	{
+
+	to {
 		opacity: 0.85;
 	}
 }
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-	@keyframes fadePopupIn
-	{
-		from
-		{
+	@keyframes fadePopupIn {
+		from {
 			opacity: 0;
 		}
-		to
-		{
+
+		to {
 			opacity: 0.85;
 		}
 	}
 }
 
 
-@keyframes scalePopupIn
-{
-	from
-	{
+@keyframes scalePopupIn {
+	from {
 		transform: translate(-50%, -50%) scale(0.75);
 	}
-	to
-	{
+
+	to {
 		transform: translate(-50%, -50%) scale(1);
 	}
 }
 
-@keyframes fadeButtonHovered
-{
-	from
-	{
+@keyframes fadeButtonHovered {
+	from {
 		background-color: var(--color-light-zero);
 		color: var(--color-dark-zero);
 	}
-	to 
-	{
+
+	to {
 		background-color: var(--color-light-one);
 		color: var(--color-dark-three);
 	}
 }
 
-@keyframes fadeIconButtonHovered
-{
-	from
-	{
+@keyframes fadeIconButtonHovered {
+	from {
 		color: var(--color-light-zero);
 	}
-	to 
-	{
+
+	to {
 		color: var(--color-light-one);
 	}
 }
 
-body
-{
-	min-height: 100vh;
-	background-color: var(--color-dark-zero);
-	font-family: 'Source Sans Pro', sans-serif;
-	margin: none;
-	padding: none;
-	overflow: hidden;
-}
-
-button 
-{
+button {
 	background-color: var(--color-light-zero);
 	color: var(--color-dark-zero);
-	
-	border: none; 
+
+	border: none;
 	border-radius: 0.25rem;
-	
+
 	margin: 0.25rem 0.125rem;
 	padding: 0.4rem 0.7rem;
 }
 
-code
-{
+code {
 	font-family: 'Ubuntu Mono', monospace;
 }
-button:hover
-{
+
+button:hover {
 	background-color: var(--color-light-one);
 	color: var(--color-dark-three);
-	
+
 	animation-name: fadeButtonHovered;
 	animation-duration: 0.1s;
-	
+
 	cursor: pointer;
 }
 
-button:active
-{
+button:active {
 	background-color: var(--color-light-two);
 	color: var(--color-dark-three);
 }
 
-button:visited
-{
+button:visited {
 	color: var(--color-dark-one);
 }
 
-a
-{
+a {
 	text-decoration: none;
 	font-weight: bold;
 	color: var(--color-light-zero);
 }
 
-a:visited
-{
+a:visited {
 	color: var(--color-light-one);
 }
 
-a:hover
-{
+a:hover {
 	color: var(--color-light-two);
 }
 
-.divContent
-{
-	background-color: var(--color-dark-two);
-	color: var(--color-light-zero);
-	padding: 0.4rem 0.7rem;
-	margin: auto;
-	
-	max-width: 100%;
-	max-height: 100%;
-	
-	border: none; 
-	border-radius: 0.25rem;
-	
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	z-index: 1;
-	-moz-transform: translateX(-50%) translateY(-50%);
-	-webkit-transform: translateX(-50%) translateY(-50%);
-	transform: translateX(-50%) translateY(-50%);
-}
-
-.divHeader > *
-{
+.divHeader>* {
 	display: inline-block;
 	vertical-align: middle;
 	padding: 0.7rem 1.4rem;
 	margin: auto;
 }
-.divText
-{
+
+.divText {
 	word-wrap: break-word;
 	padding: 0.7rem 1.4rem;
 	margin: auto;
 }
 
-.divButtons
-{
+.divButtons {
 	text-align: center;
-	font-size: 0; 
+	font-size: 0;
 	margin: auto;
 	padding: 0.4rem;
 }
 
-.divTopbar > *
-{
+.divTopbar>* {
 	display: inline-block;
 	width: 100%;
 	background-color: var(--color-dark-three);
 	color: var(--color-light-one);
 }
 
-.popupText
-{
+.popupText {
 	padding: 0.4rem 0.8rem;
 }
 
-.iconLink
-{
+.iconLink {
 	font-size: 11pt;
 	margin-top: auto;
 	margin-bottom: auto;
@@ -210,20 +141,17 @@ a:hover
 	color: var(--color-light-zero);
 }
 
-.iconLink:hover
-{
+.iconLink:hover {
 	color: var(--color-light-one);
 	animation-name: fadeIconButtonHovered;
 	animation-duration: 0.1s;
 }
 
-.iconLink:active
-{
+.iconLink:active {
 	color: var(--color-light-two);
 }
 
-#divPopupGray
-{
+#popupGray {
 	position: fixed;
 	display: none;
 	width: 100%;
@@ -232,91 +160,812 @@ a:hover
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0,0,0,0.25);
+	background-color: rgba(0, 0, 0, 0.25);
 	z-index: 2;
 	animation-name: fadePopupIn;
 	animation-duration: 0.3s;
 }
 
-#discordText
-{
+#discordText {
 	color: var(--color-light-zero);
 }
 
-#discordText:hover
-{
+#discordText:hover {
 	animation-name: fadeIconButtonHovered;
 	animation-duration: 0.1s;
 	color: var(--color-light-one);
 	cursor: pointer;
 }
 
-#popupLicense
-{
-	
-}
+#popupLicense {}
 
-#popupDiscord
-{
-	
-}
+#popupDiscord {}
 
-.circularImage {
-	border-radius: 50%;
-	/* 	clip-path: circle(40% at center); */
-}
 
-.divPopup
-{
+
+.popup {
 	display: none;
-	
+
 	background-color: var(--color-dark-two);
 	opacity: 0.85;
-	
+
 	box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2), 0 0.4rem 1.6rem 0 rgba(0, 0, 0, 0.19);
 	color: var(--color-light-zero);
-	
+
 	padding: 0.125rem;
-	
+
 	border: none;
 	border-radius: 0.25rem;
-	
+
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	z-index: 3;
-	
+
 	margin: auto;
-	
+
 	transform-origin: center;
 	transform: translate(-50%, -50%);
-	
+
 	animation: fadePopupIn 0.3s, scalePopupIn 0.3s;
+
+} 
+*/
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+/* --- Misc./Global --- */
+
+:root {
+	--color-dark-zero: #000010;
+	--color-dark-one: #111121;
+	--color-dark-two: #222232;
+	--color-dark-three: #333343;
+
+	--color-light-zero: #FFFFFF;
+	--color-light-one: #DDDDED;
+	--color-light-two: #BBBBCB;
+
+	--dock-animation-time: 0.5s;
+	--real-dock-animation-time: 0ms; /* Will be swapped out with dock-animation-time's value after initial animation */
+}
+
+body {
+	min-height: 100vh;
+	background-color: var(--color-dark-zero);
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12pt;
+	margin: none;
+	padding: none;
+	overflow: hidden;
+}
+
+::-moz-selection,
+::selection {
+	color: #111121;
+	background: #555565;
+}
+
+.uiText {
+	margin: 0em;
+}
+
+#title {
+	font-size: 40px;
+	text-align: right;
+}
+
+.subtitle {
+	font-size: 24px;
+}
+
+#smallTitle {
+	margin-right: 2.5em;
+}
+
+hr {
+	border: none;
+	border-top: 0.075em solid #eeeefe;
+	overflow: visible;
+	text-align: center;
+	margin: 0;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	min-width: 80%;
+	height: 5px;
+}
+
+code, .gistCode {
+	font-family: 'Ubuntu Mono', monospace;
+}
+
+.dropdown {
+	background-color: var(--color-dark-two);
+	color: var(--color-light-zero);
+	border: 1px solid blue;
+	padding: 1em 2em;
+	border-radius: 0.5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+/* 	align-content: space-between;
+ */}
+ .dropdownContents,
+ .dropdownContents[expanded=false] 
+  {
+    padding: 0;
+	margin-top: 0.75em;
+	overflow: scroll;
+	max-height: 80vh;
+	transition: opacity 1s;
+
+	visibility: collapse;
+	display: none;
+	opacity: 0%;
+ }
+.dropdownContents[expanded=true]  {
+	visibility: visible;
+	display: flex;
+	opacity: 100%;
+}
+.dropdownTitle {
+	flex: 1 0 0;
+}
+.dropdownHeader {
+	display: flex;
+	flex-direction: row;
+	
+	justify-content: center;
+	align-items:center;
+	align-content: space-between;
+}
+.dropdownIcon {
+	margin-left: 1em;
+	min-width: 1em;
+	max-width: 1em;
+	min-height: 1em;
+	max-height: 1em;
+}
+
+.contactDestination, .codeContainer {
+	border: 0.125em solid #000010;
+	padding: 0.25em;
+	border-radius: 0.25em;
+	background-color: #111121;
+}
+.codeContainer {
+	margin: 0;
+	margin-top: 0.125em;
+	margin-bottom: 0.125em;
+
+	max-height: 80vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+.gistCode {
+	margin: 0;
+	padding: 0.5em;
+	font-size: 12px;
+    overflow: scroll;
+}
+.codeFooter {
+	background-color: #111121;
+	padding: 0.5em;
+	display: flex;
+	flex-direction: row;
+	bottom: 0;
+}
+.footerText:first-child {
+	margin-left: 0;
+}
+.footerText:last-child {
+	margin-right: 0;
+}
+.footerText {
+	font-size: 12px;
+	color: #444464;
+	margin: 0;
+	
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	
+	padding: 0;
+}
+.contactDestination {
+	cursor: pointer;
+}
+
+@font-face {
+	font-family: 'Icons';
+	src: url("resource/icons.woff");
+}
+
+.contactText, .contactIcon {
+	margin: 0;
+	padding: 0;
+}
+.contactIcon {
+	font-family: 'Icons', 'Source Sans Pro';
+	font-size: 13pt;
+	margin-right: 0.25em;
+}
+.contactText {
+	text-underline-offset: 0.15em;
+	margin-top: calc(0.15em * -0.5);
+	text-decoration: underline;
+	font-family: 'Source Sans Pro';
+}
+
+.contactButton {
+
+	text-decoration: none;
+	margin: 0;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	display: flex;
+	flex-direction: row;
+}
+.contactButton:first-child { margin-left: 0em; }
+.contactButton:last-child { margin-right: 0em; }
+.contactButton, .contactButton:visited{ color: inherit; }
+.contactButton:hover { color: #ccccec; }
+.contactButton:active { color: #aaaaca; }
+
+.contactContainer {
+	display: flex;
+	justify-content:space-between;
+	flex-direction: row;
+}
+
+#mainCaption {
+	margin: none;
+	margin-bottom: 1.25em;
+	text-align: right;
+}
+
+.caption {
+	font-size: 16px;
+}
+
+.circularImage {
+	border-radius: min(50vh, 50vw);
+}
+
+.navButton,
+.circularImage,
+.contactButton,
+*[obscured=true], 
+.popup[shown=false],
+ .noSelect {
+	user-select: none;
+}
+
+#contactPage {
+	padding: 4em;
+	background-color: var(--color-dark-two);
+	color: var(--color-light-zero);
+    border-radius: 1em;
+
+}
+#portfolioPage {
+	overflow: scroll;
+	max-height: 80vh;
+	display: flex;
+	flex-direction: column;
+    align-items: stretch;
 	
 }
 
+.content,
+.content[shown=false] {
+	
+	/* 	padding: 4em;
+	*/	min-width: 34em;
+	
+	top: 50%;
+
+	border: none;
+
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	left: 50%;
+	overflow: scroll;
+
+	opacity: 0%;
+	transform: translate(-50%, 50vh) scale(50%);
+	transition: opacity 1.5s, transform .625s;
+}
+
+.content[shown=true] {
+	transform: translate(-50%, -50%) scale(100%);
+	display: flex;
+	visibility: visible;
+	opacity: 100%;
+}
+
+.shadeBehindPopup, .shadeBehindPopup[shown=false] {
+	visibility: collapse;
+	top: 0;
+	left: 0;
+	min-width: 100vw;
+	min-height: 100vh;
+	position: absolute;
+	
+	opacity: 0%;
+
+	backdrop-filter: blur(0) brightness(100%);
+	transition: backdrop-filter 0.3s, opacity 0.3s;
+}
+
+.shadeBehindPopup[shown=true] {
+	visibility: visible;
+	opacity: 100%;
+	backdrop-filter: blur(0.25em) brightness(60%);
+}
+
+.popup,
+.popup[shown=false] {
+	background-color: #222232;
+	color: var(--color-light-zero);
+
+	padding: 4em;
+	min-width: 14em;
+	z-index: 1;
+	
+	position: fixed;
+	overflow: scroll;
+	top: 50%;
+	left: 50%;
+
+	border-radius: 0.5em;
+	border: none;
+	border-bottom: 0.125em solid #111121;
+
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	display: flex;
+	flex-direction: column;
+
+	opacity: 0%;
+	transform: translate(-50%, -50%) scale(25%);
+	transition: opacity 0s, transform 0s;
+}
+
+.popup[shown=true] {
+	user-select:text;
+	display: flex;
+	visibility: visible;
+	opacity: 100%;
+	transform: translate(-50%, -50%) scale(100%);
+	transition: opacity 0.625s, transform 0.625s, width 0.625s;
+}
+
+@keyframes spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+.spinner, .spinner[hidden=false] {
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	border: solid .125em transparent;
+	border-bottom-color: #eeeefe;
+	visibility: visible;
+	display: initial;
+	animation: 0.5s linear infinite spinner;
+	
+}
+.spinner[hidden=true] {
+	visibility: collapse;
+	display: none;
+}
+
+.fetchError, .fetchError[shown=false],
+.fetchDependent, .fetchDependent[shown=false] {
+	display: none;
+	visibility: collapse;
+	opacity: 0%;
+
+	transition: opacity 0.5s;
+}
+.fetchError[shown=true],
+.fetchDependent[shown=true] {
+	display: initial;
+	visibility: visible;
+	opacity: 100%;
+}
+
+#contactHeader {
+	align-self: center;
+}
+
+/* --- Main Content --- */
+
+@keyframes dockHeader {
+	0% {
+		padding: 4em;
+		min-width: 34em;
+
+		top: 50%;
+		border-radius: 1em;
+
+		border: none;
+		border-bottom: 0.125em solid transparent;
+
+		transform: translateX(-50%) translateY(-50%);
+		justify-content: space-between;
+	}
+
+	100% {
+		padding: 0.5em;
+		min-width: 100%;
+
+		top: 0;
+		border-radius: 0;
+
+		border: none;
+		border-bottom: 0.125em solid #111121;
+
+		transform: translateX(-50%) translateY(0%);
+		justify-content: center;
+	}
+}
+
+@keyframes undockHeader {
+	0% {
+		padding: 0.5em;
+		min-width: 100%;
+
+		top: 0;
+		border-radius: 0;
+
+		border: none;
+		border-bottom: 0.125em solid #111121;
+
+		transform: translateX(-50%) translateY(0%);
+		justify-content: center;
+	}
+
+	100% {
+		padding: 4em;
+		min-width: 34em;
+
+		top: 50%;
+		border-radius: 1em;
+
+		border: none;
+		border-bottom: 0.125em solid transparent;
+
+		transform: translateX(-50%) translateY(-50%);
+	}
+}
+
+.dynamicHeader {
+	background-color: var(--color-dark-two);
+	color: var(--color-light-zero);
+
+	padding: 4em;
+	min-width: 34em;
+
+	top: 50%;
+	border-radius: 1em;
+
+	border: none;
+	border-bottom: 0.125em solid transparent;
+
+	transform: translateX(-50%) translateY(-50%);
+	justify-content: space-between;
+
+	align-items: center;
+	align-content: center;
+
+	/* Persistent */
+
+	display: flex;
+	flex-direction: row;
+	position: fixed;
+	left: 50%;
+	overflow: hidden;
+}
+
+.dynamicHeader[docked=true] {
+	animation: dockHeader ease var(--real-dock-animation-time);
+	animation-fill-mode: forwards;
+}
+
+.dynamicHeader[docked=false] {
+	animation: undockHeader ease var(--real-dock-animation-time);
+	animation-fill-mode: forwards;
+}
+
+/* --- Navigation Button Container --- */
+
+@keyframes dockNavButtons {
+	0% {
+		opacity: 100%;
+	}
+
+	25% {
+		opacity: 0%;
+	}
+
+	75% {
+		opacity: 0%;
+	}
+
+	100% {
+		opacity: 100%;
+	}
+}
+
+@keyframes undockNavButtons {
+	0% {
+		opacity: 100%;
+	}
+
+	25% {
+		opacity: 0%;
+	}
+
+	75% {
+		opacity: 0%;
+	}
+
+	100% {
+		opacity: 100%;
+	}
+}
+
+.navButtonContainer {
+	/* Persistent */
+
+	background-color: #111121;
+	border: 0.125em solid var(--color-dark-zero);
+	border-radius: 0.5em;
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+
+	background-size: 0% 100%;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(to right, #444464, #444464);
+
+	transition: position 0.3s, background-position 0.3s;
+	transition-timing-function: ease;
+}
+
+.dynamicHeader[docked=true] .navButtonContainer {
+	animation: dockNavButtons var(--real-dock-animation-time) ease;
+	animation-fill-mode: forwards;
+}
+
+.dynamicHeader[docked=false] .navButtonContainer {
+	animation: undockNavButtons var(--real-dock-animation-time) ease;
+	animation-fill-mode: forwards;
+}
+
+
+/* --- Navigation Buttons --- */
+
+.navButton {
+	/* Persistent */
+
+	min-width: 5.25em;
+	min-height: 1em;
+
+	padding: 0.05em;
+	padding-top: 0.35em;
+	padding-bottom: 0.35em;
+
+	flex: 1;
+
+	background-color: transparent;
+	border: none;
+	color: #BBBBCB;
+	text-align: center;
+
+	transition-property: color;
+	transition-duration: 0.3s;
+}
+
+.navButton[selected=true] {
+	color: #dddded;
+}
+
+.navButton[selected=false] {
+	color: #bbbbcb;
+}
+
+.navButton[selected=false]:hover {
+	animation: hoverNavButton 0.5s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes hoverNavButton {
+	from {
+		background-color: #111121;
+	}
+
+	to {
+		background-color: #44446444;
+	}
+}
+
+/* --- Non-dockables --- */
+
+@keyframes dockNoDocks {
+	0% {
+		margin-top: initial;
+
+		opacity: 100%;
+		visibility: visible;
+	}
+
+	25% {
+		opacity: 0%;
+	}
+
+	75% {
+		margin-top: -100%;
+
+		visibility: hidden;
+		display: none;
+		position: absolute;
+		max-width: 0;
+		max-height: 0;
+	}
+
+	100% {
+		margin-top: -100%;
+
+		opacity: 0%;
+		visibility: hidden;
+		position: absolute;
+		max-width: 0;
+	}
+}
+
+@keyframes undockNoDocks {
+	0% {
+		margin-top: -100%;
+
+		opacity: 0%;
+		visibility: hidden;
+		position: absolute;
+		max-width: 0;
+	}
+
+	25% {
+		margin-top: -100%;
+
+		opacity: 0%;
+
+		visibility: hidden;
+		display: none;
+		position: absolute;
+		max-width: 0;
+		max-height: 0;
+	}
+
+	75% {
+		margin-top: initial;
+
+		opacity: 0%;
+	}
+
+	100% {
+		margin-top: initial;
+
+		opacity: 100%;
+
+		visibility: visible;
+	}
+}
+
+.dynamicHeader[docked=true] .noDock {
+	animation: dockNoDocks var(--real-dock-animation-time) ease;
+	animation-fill-mode: forwards;
+}
+
+.dynamicHeader[docked=false] .noDock {
+	animation: undockNoDocks var(--real-dock-animation-time) ease;
+	animation-fill-mode: forwards;
+}
+
+/* --- Only-dockables --- */
+
+@keyframes dockOnlyDocks {
+	0% {
+		visibility: collapse;
+		display: none;
+		opacity: 0%;
+	}
+
+	75% {
+		visibility: visible;
+		display: inline-block;
+		opacity: 0%;	}
+
+	100% {
+		visibility: visible;
+		display: inline-block;
+		opacity: 100%;	}
+}
+@keyframes undockOnlyDocks {
+	0% {
+		visibility: visible;
+		display: inline-block;
+		opacity: 100%;
+	}	
+	25% {
+		visibility: visible;
+		display: inline-block;
+		opacity: 0%;
+	}
+	100% {
+		visibility: collapse;
+		display: none;
+		opacity: 0%;
+	}
+}
+
+.onlyDock {
+	visibility: collapse;
+	display: none;
+	opacity: 0%;
+}
+
+.dynamicHeader[docked=true] .onlyDock {
+	visibility: visible;
+	display: inline-block;
+	animation: dockOnlyDocks var(--real-dock-animation-time) ease;
+	animation-fill-mode: forwards;
+}
+.dynamicHeader[docked=false] .onlyDock {
+	visibility: collapse;
+	display: none;
+	animation: undockOnlyDocks var(--real-dock-animation-time) ease;
+	animation-fill-mode: forwards;
+}
+
+/* --- Mobile Friendly --- */
+
 @media (max-width: 680px) {
-	@keyframes scalePopupIn {}
-	.divContent, .divPopup {
+
+	.dynamicHeader {
 		width: 100%;
 		height: 100%;
-		
-		display: flex;
-		align-content: center;
+		margin: auto;
 		flex-direction: column;
-		justify-content: center; 
+		align-items: center;
+		align-content: center;
+		justify-content: center;
 	}
-	.divPopup {
-		display: none;
-		box-shadow: none;
-		padding: 0rem;
+
+	.uiText {
+		text-align: center;
 	}
-	.divContent > *, .divPopup > * {
-		margin: 0%;
+
+	.circularImage {
+		margin-bottom: 2em;
 	}
-	.divPopup > * {
-		height: max-content;
-		vertical-align: center;
-	}
-  }
-} /* Mobile-friendly */
+}
