@@ -8,5 +8,4 @@ replace ajax with fetch
 clean up monaco loading. use cdn
 fix alignment for large .content pages
 
-use prism for syntax highlighting
 blog?
