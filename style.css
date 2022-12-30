@@ -296,7 +296,7 @@ code,
 	/* 	align-content: space-between;
  */
 	max-height: auto;
-    transition: max-height 1s;
+    transition: max-height 0.5s;
 }
 .dropdown[expanded] {
 	max-height: 100vh;
