@@ -22,8 +22,7 @@ function getContactData(requestName) {
   if (!contactInfo.get(requestName)) {
 
     const xhr = new XMLHttpRequest();
-    // let url = `http://${window.location.host}:5000/get/${requestName.toLowerCase()}`;
-    let url = `http://localhost:5000/get/${requestName.toLowerCase()}`;
+    let url = `http://connect.starbo.lt:6621/get/${requestName.toLowerCase()}`; // I hate this, but it will have to do for now
     xhr.open("GET", url);
     xhr.send();
 
