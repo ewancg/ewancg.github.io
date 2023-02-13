@@ -15,7 +15,7 @@
 	<link
 	rel="stylesheet"
 	data-name="vs/editor/editor.main"
-	href="./node_modules/monaco-editor/dev/vs/editor/editor.main.css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.35.0/min/vs/editor/editor.main.css"
 />
 	</style>
 </head>
@@ -48,6 +48,8 @@
 
 	<div class="content" id="portfolioPage">
 		<div class="gistDropdown">
+			<h2 class="contentHeader uiText" style="margin-bottom: 1rem;">This page is under construction!</h2>
+			<h3 class="contentHeader uiText">GitHub Gists (they're expanders. Haven't quite got the stylesheet figured out yet)</h3>
 		</div>
 	</div>
 	<div class="content" id="contactPage">
@@ -82,7 +84,7 @@
 	</div>
 
 	<div class="dynamicHeader">
-		<img class="circularImage noDock autoAnimate" src="resource/ewan.png" width="128pt" height="128pt"
+		<img class="circularImage noDock autoAnimate" src="resource/camel.png" width="128pt" height="128pt"
 			draggable="false">
 
 		<p class="subtitle onlyDock uiText autoAnimate" id="smallTitle">Ewan Green</p>
@@ -132,10 +134,10 @@
 </body>
 <script type="module" src="script.js"></script>
 <script>
-	var require = { paths: { vs: '../node_modules/monaco-editor/dev/vs' } };
+	var require = { paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.35.0/min/vs" } };
 </script>
-<script src="./node_modules/monaco-editor/dev/vs/loader.js"></script>
-<script src="./node_modules/monaco-editor/dev/vs/editor/editor.main.nls.js"></script>
-<script src="./node_modules/monaco-editor/dev/vs/editor/editor.main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.35.0/min/vs/loader.min.js"></script>
+<!-- <script src="./node_modules/monaco-editor/dev/vs/editor/editor.main.nls.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.35.0/min/vs/editor/editor.main.js"></script>
 </script>
 </html>
