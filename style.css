@@ -240,7 +240,6 @@ body {
 	font-size: 12pt;
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
 }
 
 ::-moz-selection,
@@ -269,7 +268,6 @@ body {
 hr {
 	border: none;
 	border-top: 0.075em solid #eeeefe;
-	overflow: visible;
 	text-align: center;
 	margin: 0;
 	margin-top: 1.5em;
@@ -289,6 +287,7 @@ code,
 	text-align: center;
 	margin: 0.25rem;
 }
+
 .dropdown {
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
@@ -298,30 +297,33 @@ code,
 	border-radius: 0.5em;
 	display: flex;
 	flex-direction: column;
-	justify-content:flex-start;
+	justify-content: flex-start;
 	align-items: stretch;
-	/* 	align-content: space-between;
- */
- overflow: scroll;
 	flex-grow: 1;
 	max-height: auto;
-    transition: max-height 0.5s;
+	transition: max-height 0.5s;
+	overflow: hidden;
 }
+
 .dropdown[expanded] {
 	max-height: 100vh;
+	overflow-y: scroll;
 }
+
 .dropdownContents {
-	transition: max-height 0s, opacity 0s, overflow 0s;
+	transition: max-height 0s, opacity 0s;
 }
+
 .dropdown:not([expanded]) .dropdownContents {
 	padding: 0;
-	overflow: hidden;
 	max-height: 0;
-/* 	
+	/* 	
 	visibility: collapse;
 	display: none; */
+	overflow: auto;
 	opacity: 0%;
 }
+
 .dropdown[expanded] .dropdownContents {
 	visibility: visible;
 	/* max-height: 80vh; */
@@ -331,15 +333,15 @@ code,
 }
 
 .dropdownIcon {
-display: none;
+	display: none;
 	/* margin-left: 1em;
 	min-width: 1em;
 	max-width: 1em;
 	min-height: 1em;
 	max-height: 1em;
 	transition: transform 1s; */
-
 }
+
 .dropdown:not([expanded]) .dropdownIcon {
 	width: 0.5em;
 	height: 0.5em;
@@ -349,6 +351,7 @@ display: none;
 	visibility: visible;
 	transform: rotate(45deg);
 }
+
 .dropdown[expanded] .dropdownIcon {
 	transform: rotate(225deg);
 }
@@ -386,9 +389,11 @@ display: none;
 	flex-direction: column;
 	padding: 0;
 }
+
 .codeContainer:first-child {
 	margin-top: 0;
 }
+
 .codeContainer:last-child {
 	margin-bottom: 0;
 }
@@ -397,7 +402,8 @@ display: none;
 	margin: 0;
 	padding: 0.5em;
 	font-size: 12px;
-	overflow: scroll;
+	overflow-y: auto;
+	overflow-x: auto;
 }
 
 .codeFooter {
@@ -523,7 +529,6 @@ display: none;
 }
 
 #portfolioPage {
-	overflow: scroll;
 	max-height: 80vh;
 	display: flex;
 	flex-direction: column;
@@ -534,8 +539,6 @@ display: none;
 .content,
 .content:not([shown]) {
 
-	/* 	padding: 4em;
-	*/
 	min-width: 34em;
 
 	top: 50%;
@@ -550,7 +553,6 @@ display: none;
 	flex-direction: column;
 	position: fixed;
 	left: 50%;
-	overflow: scroll;
 
 	opacity: 0%;
 	transform: translate(-50%, 50vh) scale(50%);
@@ -595,7 +597,6 @@ display: none;
 	z-index: 1;
 
 	position: fixed;
-	overflow: scroll;
 	top: 50%;
 	left: 50%;
 
@@ -736,8 +737,7 @@ display: none;
 }
 
 .dynamicHeader,
-.dynamicHeader:not([docked]) 
-{
+.dynamicHeader:not([docked]) {
 	background-color: var(--color-dark-two);
 	color: var(--color-light-zero);
 
@@ -762,7 +762,6 @@ display: none;
 	flex-direction: row;
 	position: fixed;
 	left: 50%;
-	overflow: hidden;
 
 	/* Undocked */
 	animation: undockHeader ease var(--real-dock-animation-time);
@@ -818,7 +817,6 @@ display: none;
 	background-color: #111121;
 	border: 0.125em solid var(--color-dark-zero);
 	border-radius: 0.5em;
-	overflow: hidden;
 
 	display: flex;
 	flex-direction: row;
