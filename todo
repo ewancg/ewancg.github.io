@@ -1,0 +1,10 @@
+add portfolio page
+    - gist fetch
+    - dropdown
+    - manual entries (big)
+
+replace ajax with fetch
+clean up monaco loading. use cdn
+fix alignment for large .content pages
+
+blog?
