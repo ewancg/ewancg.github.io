@@ -66,11 +66,11 @@ const Navigation = {
               Navigation.animateNavButton(obj, this)
               break;
             case 1:
-              alert("open in new tab requested")
+              //alert("open in new tab requested")
               // open / in new tab
               break;
             case 2:
-              alert("custom context menu requested")
+              //alert("custom context menu requested")
               // Show custom context menu
               break;
           }
