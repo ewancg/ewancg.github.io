@@ -14,7 +14,7 @@ languageAliases.set("Shell", "shell");
 document.addEventListener('DOMContentLoaded', async function () {
   // Gist Data
   const metaXhr = new XMLHttpRequest();
-  let url = "https://api.github.com/users/EwanGreen4/gists";
+  let url = "https://api.github.com/users/ewancg/gists";
   metaXhr.open("GET", url);
   // Sent after theme resolved
 
