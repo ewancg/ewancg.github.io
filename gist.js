@@ -108,8 +108,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                   dropdown.appendChild(destination);
   
                   dropdownIcon.classList.toggle("spinner", false);
-                  // placeholder
-                  // also set document description, filename, filesize, and language, set up prismjs
                 }
               } 
           }

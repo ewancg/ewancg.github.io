@@ -16,11 +16,32 @@ function determineAnimationTime() {
 }
 
 let contactInfo = new Map();
+contactInfo.set("Discord", "mpft")
+
+function decipher(str) {
+  let result = '';
+  for(let i = 0; i < str.length; i++) {
+    var charcode = (str[i].charCodeAt()) - 1;
+    result += String.fromCharCode(charcode);
+  }
+  return result;
+}
+
+// Email has had a simple cipher applied to it to avoid being caught by web scrapers
+contactInfo.set("Email", decipher("fxbohsffo:6Ahnbjm/dpn"))
+
 function getContactData(requestName) {
   Popup.showPopup(requestName);
 
-  if (!contactInfo.get(requestName)) {
+  let popup = Popup.current();
 
+  Array.from(popup.getElementsByClassName("spinner")).forEach((i) => i.toggleAttribute("hidden", true));
+  Array.from(popup.getElementsByClassName("fetchDependent")).forEach((i) => i.toggleAttribute("shown", true));
+  Array.from(popup.getElementsByClassName("fetchError")).forEach((i) => i.toggleAttribute("shown", false));
+  Array.from(popup.getElementsByClassName("contactDestination")).forEach((i) => i.innerText = contactInfo.get(requestName));
+
+/* There is no need for this to be dynamic
+  if (!contactInfo.get(requestName)) {
     const xhr = new XMLHttpRequest();
     let url = `https://ewan.starbo.lt/get/${requestName.toLowerCase()}`; // I hate this, but it will have to do for now
     xhr.open("GET", url);
@@ -48,6 +69,7 @@ function getContactData(requestName) {
     xhr.onerror = determineStatus;
     xhr.onload = determineStatus;
   }
+*/
 }
 
 document.addEventListener("DOMContentLoaded", () => {
