@@ -1,6 +1,6 @@
 import Navigation, { } from './navigation.js';
 import Popup, { } from './popup.js';
-import Gist, { } from './gist.js';
+//import Gist, { } from './gist.js';
 
 let width = window.innerWidth;
 let mobileTolerance = 680;
