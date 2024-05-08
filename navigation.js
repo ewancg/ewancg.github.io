@@ -16,7 +16,8 @@ const Navigation = {
     else history.pushState("", document.title, window.location.pathname + window.location.search);
     
     this.pages.forEach((elem) => {
-      elem.toggleAttribute("shown", false);
+      if(elem)
+        elem.toggleAttribute("shown", false);
     })
     if(page) page.toggleAttribute("shown", true);
   },
@@ -43,7 +44,7 @@ const Navigation = {
     style.textContent = `
       #${parent.id} {
           background-size: ${(step)}% 100%;
-          background-position-x: ${(50 * index)}%;
+          background-position-x: ${(100 * index)}%;
         }
         `;
     document.head.appendChild(style);
@@ -82,7 +83,7 @@ const Navigation = {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  Navigation.pages.push(document.getElementById("contactPage"), document.getElementById("portfolioPage"));
+  Navigation.pages.push(document.getElementById("contactPage")/*, document.getElementById("portfolioPage")*/);
 
   let evalUrlHash = () => {
     Popup.hideAllPopups();
@@ -94,20 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
       Navigation.showSummary();
     }
 
-    if (window.location.hash) {
-      switch (window.location.hash) {
-        case "#contact":
-          navButton = document.getElementById("contactNavButton");
-          break;
-        case "#portfolio":
-          navButton = document.getElementById("portfolioNavButton");
-          break;
+    switch (window.location.hash) {
+      case "#contact":
+        navButton = document.getElementById("contactNavButton");
+        break;
+/*        case "#portfolio":
+        navButton = document.getElementById("portfolioNavButton");
+        break;*/
         default:
-          console.log("Invalid URL hash provided. Showing summary.")
-          summary();
-          break;
-      }
-    } else summary();
+        console.log("Invalid URL hash provided. Showing summary.")
+        summary();
+        break;
+    }
 
     let navButtonContainers = document.getElementsByClassName("navButtonContainer");
     Array.from(navButtonContainers).forEach((item) => {
