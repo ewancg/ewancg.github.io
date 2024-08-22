@@ -10,15 +10,25 @@
         color: HighlightText;
     }
 
+    #top {
+        position: relative;
+    }
     #top > * {
         aspect-ratio: 8.5 / 11;
     }
     
     #content {
-        margin: auto auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
         width: 50rem;
-        font: serif 12pt;
         height: auto;
+
+        transform: translate(-50%, 0%);
+        margin-top: 2vh;
+
+        font: serif 12pt;
         line-height: 125%;
         padding: 25.4mm calc(25.4mm * 0.75);
 
