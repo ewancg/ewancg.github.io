@@ -55,7 +55,7 @@ content {
     text-align: justify;
     display: inline-block;
     max-width: 50em;
-    margin: 0 auto;
+    margin: 0 0.5em;
 }
 
 a:visited {
