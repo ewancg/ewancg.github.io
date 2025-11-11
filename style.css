@@ -23,6 +23,11 @@
     src: url("./resource/DMSans-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Charis";
+    src: url("./resource/Charis-Regular.woff2") format("woff2");
+}
+
 :root {
     color: var(--color-text);
     background-color: var(--color-bg);
@@ -31,7 +36,16 @@
 
 .ipa {
     text-decoration: none;
-    font-family: sans-serif;
+    font-family: "Charis", serif;
+}
+
+.flex-spacer {
+    flex-basis: 100%;
+}
+
+mark {
+    background-color: #568b5533;
+    color: inherit;
 }
 
 header {
@@ -39,6 +53,7 @@ header {
     display: flex;
     gap: 0.33em;
     align-items: baseline;
+    white-space: nowrap;
 }
 
 header * {
@@ -60,6 +75,6 @@ content {
 }
 
 a:visited {
-    color: #477246;
-    opacity: 5%;
+    color: #568b55;
+    opacity: 50%;
 }
