@@ -39,10 +39,6 @@
     font-family: "Charis", serif;
 }
 
-.flex-spacer {
-    flex-basis: 100%;
-}
-
 mark {
     background-color: #568b5533;
     color: inherit;
@@ -50,14 +46,27 @@ mark {
 
 header {
     margin-top: 1.33em;
+
+    justify-content: space-between;
+
     display: flex;
-    gap: 0.33em;
     align-items: baseline;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+}
+
+.title {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+
+    flex-grow: 1;
 }
 
 header * {
     margin: 0;
+    white-space: nowrap;
+    max-width: fit-content;
 }
 
 body {
@@ -70,11 +79,17 @@ content {
     text-align: justify;
     display: inline-block;
     max-width: 50em;
+    min-width: 0em;
     margin: 0 auto;
     padding: 0.5em;
 }
 
 a:visited {
+    color: #568b55;
+    opacity: 50%;
+}
+
+a:hover {
     color: #568b55;
     opacity: 50%;
 }
